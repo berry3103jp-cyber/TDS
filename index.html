@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>DisneySea 攻略 11/7</title>
+<style>
+/* 配色: 深い海の藍 + 真鍮色(必須) + 珊瑚色(警告)。変数はライト/ダーク両対応 */
+:root{--bg:#e9eff3;--c:#fff;--t:#10263a;--m:#5d7083;--a:#0a5c7a;--br:#a8741a;--w:#c0392b;--ok:#1f7a4d;--bd:#cfd9e0;color-scheme:light dark}
+@media(prefers-color-scheme:dark){:root{--bg:#0b1b29;--c:#12293c;--t:#e6eef5;--m:#8fa6b8;--a:#5cc8e6;--br:#e0b35a;--w:#ff8a78;--ok:#6fdc9c;--bd:#24425a}}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--t);font:15px/1.5 -apple-system,"Hiragino Sans",sans-serif;padding:env(safe-area-inset-top) 0 calc(64px + env(safe-area-inset-bottom))}
+main{padding:12px;max-width:560px;margin:auto}
+.c{background:var(--c);border:1px solid var(--bd);border-radius:10px;padding:12px;margin-bottom:10px}
+.big{font:700 40px/1 ui-serif,"Hiragino Mincho ProN",serif;letter-spacing:.02em}
+.m{color:var(--m);font-size:13px}.w{color:var(--w)}.ok{color:var(--ok)}
+.rec{border-left:6px solid var(--br)}.rec b{font:700 22px/1.3 ui-serif,"Hiragino Mincho ProN",serif}
+.tag{font-size:11px;border:1px solid var(--br);color:var(--br);border-radius:4px;padding:0 5px;margin-left:6px}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--c);border-top:1px solid var(--bd);padding-bottom:env(safe-area-inset-bottom)}
+nav button{flex:1;border:0;background:none;color:var(--m);font:600 13px -apple-system,sans-serif;padding:14px 0}
+nav button.on{color:var(--a);box-shadow:inset 0 3px var(--a)}
+button.b{background:var(--a);color:var(--bg);border:0;border-radius:8px;padding:12px 14px;font:600 15px -apple-system,sans-serif;min-height:44px}
+button.g{background:none;border:1px solid var(--bd);color:var(--t)}
+input,select{font:16px -apple-system,sans-serif;background:var(--bg);color:var(--t);border:1px solid var(--bd);border-radius:6px;padding:8px;min-height:40px;max-width:100%}
+input[type=number]{width:84px}
+.r{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:6px}
+.past{opacity:.45}li{margin:4px 0}ul{padding-left:18px;margin:6px 0}
+</style></head><body><main id="m"></main>
+<nav id="n"></nav>
+<script>
+/* ===== データ定義 =====
+ A: [id, 表示名, エリア, 必須(1/0)]  SLUG: 個別ページURL(2026-11-04にサイト上で実在確認済み) */
+const A=[['soar','ソアリン','MH',1],['frozen','アナとエルサのフローズンジャーニー','FS',1],['center','センター・オブ・ジ・アース','MI',1],['tot','タワー・オブ・テラー','AW',1],['peter','ピーターパン','FS',0],['rapun','ラプンツェル','FS',0],['toy','トイ・ストーリー・マニア！','AW',0],['rag','レイジングスピリッツ','LD',0]];
+const SLUG={soar:'mh_soaring',frozen:'fs_frozen_journey',center:'mi_center',tot:'aw_tot',peter:'fs_neverland_adventure',rapun:'fs_lantern_festival',toy:'aw_toy',rag:'ld_raging'};
+const SRC='https://disneyreal.asumirai.info/realtime/disneysea-wait-today.html';
+const AR={MH:'メディテレーニアン',AW:'アメフロ',LD:'ロストリバー',MI:'ミステリアス',FS:'ファンタジー'};
+/* エリア間徒歩分(★推定値・未実測。HANDOFF参照) */
+const WK={'MH-AW':8,'MH-LD':8,'MH-MI':6,'MH-FS':15,'AW-LD':6,'AW-MI':10,'AW-FS':14,'LD-MI':5,'LD-FS':7,'MI-FS':8};
+const walk=(a,b)=>a==b?0:(WK[a+'-'+b]??WK[b+'-'+a]??10);
+const DL={none:'未取得',got:'取得済み',used:'利用済み',sold:'売り切れ',stop:'運休・取得不可'};
+const K='dsea1';
+/* S.c=設定 S.a[id]={w待ち,st(open/stop),av[朝,昼,夜],dn体験済,d DPA状態,b購入時刻,s,e利用枠} */
+let S;try{S=JSON.parse(localStorage.getItem(K))}catch(e){}
+S=S||{c:{en:'08:45',cl:'21:00',n:2,loc:'MH',gap:60,sim:'',nb:'',sh:[['19:15','Believe! Sea of Dreams'],['20:30','花火']]},a:{},up:'',msg:''};
+A.forEach(x=>S.a[x[0]]=Object.assign({w:'',st:'open',av:null,dn:0,d:'none',b:'',s:'',e:''},S.a[x[0]]));
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
+let T='home',SORT='def';
+/* ===== 時刻ユーティリティ(分単位) ===== */
+const tm=s=>{if(!s)return null;const p=s.split(':');return +p[0]*60+ +p[1]};
+const hm=m=>m==null||isNaN(m)?'--:--':String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
+const now=()=>S.c.sim?tm(S.c.sim):new Date().getHours()*60+new Date().getMinutes();
+const per=m=>m<630?0:m<1110?1:2; /* 0朝(〜10:30) 1昼(〜18:30) 2夜 */
+/* 次回DPA購入可能時刻 = min(最後の購入+間隔, その枠の利用開始)。手動上書き可 */
+function nextBuy(){if(S.c.nb)return tm(S.c.nb);const g=A.map(x=>S.a[x[0]]).filter(d=>d.d=='got'&&d.b);if(!g.length)return null;
+ const l=g.reduce((p,q)=>tm(q.b)>tm(p.b)?q:p);const c=[tm(l.b)+ +S.c.gap];if(l.s)c.push(tm(l.s));return Math.min(...c)}
+/* ===== 最適化: 低スコアほど「今行くべき」 ===== */
+function rec(){const t=now(),p=per(t),L=S.c.loc,o=[];
+ for(const [id,nm,ar,mu] of A){const d=S.a[id];if(d.dn||d.st=='stop')continue;const wk=walk(L,ar);let sc,why=[];
+  if(d.d=='got'&&d.s){const s=tm(d.s),e=d.e?tm(d.e):s+60;
+   if(t>e)why.push('DPA枠が過ぎています');
+   else if(t>=s){sc=-999;why.push('DPA枠の利用時間内')}
+   else if(s-t<=wk+15){sc=-500;why.push('DPA開始 '+d.s+'（移動'+wk+'分）')}
+   else continue}
+  if(sc==null){let w=d.w===''?null:+d.w;if(w==null&&d.av&&d.av[p]!=null)w=d.av[p];
+   if(w==null){w=60;why.push('待ち時間未入力(仮60分)')}else why.push('待ち'+w+'分＋移動'+wk+'分');
+   sc=w+wk-(mu?25:0);if(mu)why.push('必須');
+   if(!mu&&d.av&&d.av[p]!=null){const lt=Math.min(...d.av.slice(p+1).filter(v=>v!=null),999);if(lt<d.av[p]){sc+=(d.av[p]-lt)*.5;why.push('夜に空く傾向→後回し')}}}
+  o.push({id,nm,sc,why,ar})}
+ return o.sort((a,b)=>a.sc-b.sc)}
+/* ===== 操作 ===== */
+function U(id,k,v){S.a[id][k]=(k=='av')?v:v;save();R()}
+function C(k,v){S.c[k]=v;save();R()}
+function fin(id){const d=S.a[id];d.dn=1;if(d.d=='got')d.d='used';S.c.loc=A.find(x=>x[0]==id)[2];save();R()}
+/* 自動取得(★未検証: ブラウザからはCORSで失敗する可能性が高い。失敗時は手動入力) */
+async function fetchWT(){S.msg='取得中…';R();
+ try{const r=await fetch(SRC,{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);
+  const d=new DOMParser().parseFromString(await r.text(),'text/html');let n=0;
+  for(const id in SLUG){const a=[...d.querySelectorAll('a')].find(x=>(x.getAttribute('href')||'').includes('/'+SLUG[id]+'.html'));if(!a)continue;
+   const tx=a.textContent.replace(/\s+/g,' ');const o=S.a[id];
+   if(/休止|中止/.test(tx))o.st='stop';else if(!/閉園中/.test(tx)){o.st='open';const m=tx.match(/(\d+)\s*分/);if(m){o.w=m[1];n++}}
+   const v=tx.match(/分\s+(\d+|-)\s+(\d+|-)\s+(\d+|-)/);if(v)o.av=v.slice(1).map(x=>x=='-'?null:+x)}
+  if(!n)throw new Error('待ち時間を読み取れませんでした(閉園中、またはページ構造が想定と異なる)');
+  S.up=hm(now())+' 自動取得('+n+'件・要目視確認)';S.msg='取得しました。値は元サイトと見比べてください。'}
+ catch(e){S.msg='自動取得に失敗: '+e.message+' → 元サイトを開いて手動入力してください。'}
+ save();R()}
+/* ===== 画面 ===== */
+const sel=(id,k,o,v)=>`<select onchange="U('${id}','${k}',this.value)">${Object.keys(o).map(x=>`<option value="${x}" ${x==v?'selected':''}>${o[x]}</option>`).join('')}</select>`;
+function R(){const t=now(),nb=nextBuy(),cl=tm(S.c.cl),en=tm(S.c.en);let h='';
+ if(T=='home'){const r=rec(),mu=A.filter(x=>x[3]),dn=mu.filter(x=>S.a[x[0]].dn).length;let est=0;
+  mu.forEach(x=>{const d=S.a[x[0]];if(d.dn||d.st=='stop')return;est+=d.d=='got'?10:((d.w!==''?+d.w:(d.av&&d.av[per(t)]!=null?d.av[per(t)]:60))+12)});
+  h=`<div class=c><div class=big>${hm(t)}</div><div class=m>閉園まで ${hm(cl-t)} ／ 入園から ${t>=en?hm(t-en):'—'}</div><div class=m>データ更新: ${S.up||'手動入力のみ'}</div></div>`;
+  if(r[0])h+=`<div class="c rec"><div class=m>次のおすすめ（現在地: ${AR[S.c.loc]}）</div><b>${r[0].nm}</b><ul>${r[0].why.map(x=>'<li>'+x+'</li>').join('')}</ul><button class=b onclick="fin('${r[0].id}')">体験完了（現在地を更新）</button></div>`+
+   r.slice(1,3).map(x=>`<div class=c><b>${x.nm}</b><div class=m>${x.why.join(' ／ ')}</div></div>`).join('');
+  else h+='<div class=c>候補がありません。待ち時間を入力するか、運営状況を確認してください。</div>';
+  h+=`<div class=c><b>DPA</b><div>次回購入可能: <b>${nb==null?'—':hm(nb)}</b> ${nb!=null&&t>=nb?'<span class=ok>（今すぐ購入可）</span>':''}</div><div class=m>${A.some(x=>S.a[x[0]].d=='got'||S.a[x[0]].d=='used')?'公式ルールで再確認を':'最初はソアリン → 不可ならアナ雪'}</div></div>
+   <div class=c><b>必須 ${dn}/4 達成</b><div class="m ${est>cl-t?'w':''}">残り必須の推定 ${est}分 ／ 閉園まで ${cl-t}分${est>cl-t?'（間に合わない見込み。順序を見直す）':''}</div></div>`}
+ if(T=='list'){const o=A.slice();if(SORT=='w')o.sort((a,b)=>(+S.a[a[0]].w||999)-(+S.a[b[0]].w||999));if(SORT=='m')o.sort((a,b)=>b[3]-a[3]);
+  h=`<div class=r><select onchange="SORT=this.value;R()"><option value=def>並び:標準</option><option value=w ${SORT=='w'?'selected':''}>待ち短い順</option><option value=m ${SORT=='m'?'selected':''}>必須優先</option></select></div>`+
+  o.map(([id,nm,ar,mu])=>{const d=S.a[id];return `<div class=c><b>${nm}</b>${mu?'<span class=tag>必須</span>':''}<div class=m>${AR[ar]} ／ 平均 朝${d.av?d.av[0]??'-':'-'} 昼${d.av?d.av[1]??'-':'-'} 夜${d.av?d.av[2]??'-':'-'} ／ DPA:${DL[d.d]}</div>
+   ${id=='tot'?'<div class="m w">サイト上は11/5まで休止予定。当日の運営を要確認</div>':''}
+   <div class=r><input type=number inputmode=numeric placeholder="待ち分" value="${d.w}" onchange="U('${id}','w',this.value)">${sel(id,'st',{open:'運営中',stop:'休止'},d.st)}<label><input type=checkbox ${d.dn?'checked':''} onchange="U('${id}','dn',this.checked?1:0)"> 体験済</label></div></div>`}).join('')}
+ if(T=='dpa'){const g=A.filter(x=>S.a[x[0]].d=='got'&&S.a[x[0]].s).map(x=>({n:x[1],s:tm(S.a[x[0]].s),e:tm(S.a[x[0]].e)??tm(S.a[x[0]].s)+30})).sort((a,b)=>a.s-b.s);
+  const ov=g.filter((x,i)=>i&&x.s<g[i-1].e);
+  h=`<div class=c>次回購入可能: <b>${nb==null?'—':hm(nb)}</b>（${S.c.n}人分・設定で編集可）</div>`+(ov.length?`<div class="c w">DPA枠が重なっています: ${ov.map(x=>x.n).join('、')}</div>`:'')+
+  A.map(([id,nm])=>{const d=S.a[id];return `<div class=c><b>${nm}</b><div class=r>${sel(id,'d',DL,d.d)}</div>${d.d=='got'?`<div class=r><span class=m>購入</span><input type=time value="${d.b}" onchange="U('${id}','b',this.value)"><span class=m>枠</span><input type=time value="${d.s}" onchange="U('${id}','s',this.value)">〜<input type=time value="${d.e}" onchange="U('${id}','e',this.value)"></div>`:''}</div>`}).join('')+
+  `<div class=c><b>履歴</b>${A.filter(x=>S.a[x[0]].b).sort((a,b)=>tm(S.a[a[0]].b)-tm(S.a[b[0]].b)).map(x=>`<div class=m>${S.a[x[0]].b} ${x[1]}（${DL[S.a[x[0]].d]}）</div>`).join('')||'<div class=m>まだありません</div>'}</div>`}
+ if(T=='plan'){const it=[[en,'入園（想定）']];S.c.sh.forEach(s=>it.push([tm(s[0]),s[1]]));
+  A.forEach(x=>{const d=S.a[x[0]];if((d.d=='got'||d.d=='used')&&d.s)it.push([tm(d.s),'DPA枠: '+x[1]+(d.e?'〜'+d.e:'')])});it.push([cl,'閉園']);it.sort((a,b)=>a[0]-b[0]);
+  h='<div class=c><ul style="list-style:none;padding:0">'+it.map(x=>`<li class="${x[0]<t?'past':''}"><b>${hm(x[0])}</b> ${x[1]}</li>`).join('')+'</ul></div><div class="c m">おすすめ行動はホーム画面で自動更新されます。ショー時刻は設定で編集できます。</div>'}
+ if(T=='set'){const c=S.c;h=`<div class=c><b>基本設定</b><div class=r>入園<input type=time value="${c.en}" onchange="C('en',this.value)">閉園<input type=time value="${c.cl}" onchange="C('cl',this.value)"></div>
+  <div class=r>DPA人数<input type=number value="${c.n}" onchange="C('n',this.value)">購入間隔(分)<input type=number value="${c.gap}" onchange="C('gap',this.value)"></div>
+  <div class=r>現在地<select onchange="C('loc',this.value)">${Object.keys(AR).map(k=>`<option value=${k} ${k==c.loc?'selected':''}>${AR[k]}</option>`).join('')}</select></div>
+  <div class=r>次回DPA時刻(手動)<input type=time value="${c.nb}" onchange="C('nb',this.value)"></div>
+  <div class=r>ショー1<input type=time value="${c.sh[0][0]}" onchange="S.c.sh[0][0]=this.value;save();R()">ショー2<input type=time value="${c.sh[1][0]}" onchange="S.c.sh[1][0]=this.value;save();R()"></div>
+  <div class=r>テスト用の仮想時刻<input type=time value="${c.sim}" onchange="C('sim',this.value)"></div></div>
+  <div class=c><b>待ち時間データ</b><div class=r><button class=b onclick="fetchWT()">自動取得を試す</button><a href="${SRC}" target=_blank rel=noopener><button class="b g">元サイトを開く</button></a></div><div class="m ${S.msg.includes('失敗')?'w':''}">${S.msg||'更新は手動ボタンのみ（過度なアクセス防止）'}</div></div>
+  <div class=c><button class="b g" onclick="if(confirm('全データを消します')){localStorage.removeItem(K);location.reload()}">データを初期化</button></div>`}
+ $('m').innerHTML=h;$('n').innerHTML=[['home','今'],['list','一覧'],['dpa','DPA'],['plan','予定'],['set','設定']].map(x=>`<button class="${T==x[0]?'on':''}" onclick="T='${x[0]}';R()">${x[1]}</button>`).join('')}
+function $(s){return document.getElementById(s=='m'?'m':'n')}
+R();setInterval(()=>{if(T=='home'&&!S.c.sim&&!document.activeElement.matches('input,select'))R()},60000);
+</script></body></html>
