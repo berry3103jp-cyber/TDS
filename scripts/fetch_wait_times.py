@@ -17,13 +17,15 @@ class P(HTMLParser):
     def __init__(s):
         super().__init__(); s.items=[]; s.cur=None
     def handle_starttag(s,t,a):
+        if s.cur is not None: s.cur['h'].append(s.get_starttag_text())
         if t=='a':
             d=dict(a); h=d.get('href') or ''
             m=re.search(r'/attraction/([a-z]{2})_([a-z0-9_]+)\.html',h)
-            s.cur={'slug':m.group(1)+'_'+m.group(2),'area':m.group(1),'title':d.get('title') or '','t':[]} if m else None
+            s.cur={'slug':m.group(1)+'_'+m.group(2),'area':m.group(1),'title':d.get('title') or '','t':[],'h':[s.get_starttag_text()]} if m else None
     def handle_data(s,d):
-        if s.cur is not None: s.cur['t'].append(d)
+        if s.cur is not None: s.cur['t'].append(d); s.cur['h'].append(d)
     def handle_endtag(s,t):
+        if s.cur is not None: s.cur['h'].append('</%s>'%t)
         if t=='a' and s.cur is not None: s.items.append(s.cur); s.cur=None
 
 def parse(html):
@@ -37,11 +39,13 @@ def parse(html):
         elif '閉園中' in tx: st='closed'
         elif re.search(r'休止|中止',tx): st='stop'
         else: st='open'
-        m=re.search(r'(\d+)\s*分',tx); wait=int(m.group(1)) if (m and st=='open') else None
+        tx2=re.sub(r'\d{1,2}:\d{2}\s*[-〜~]\s*\d{1,2}:\d{2}','',tx)  # 営業時間(9:00-21:00)を待ち時間と誤読しない
+        m=re.search(r'(\d+)\s*分',tx2); wait=int(m.group(1)) if (m and st=='open') else None
+        q=re.search(r'分\s+(\d+)\s*%',tx2); pct=int(q.group(1)) if q else None  # 意味は未確認(待ち時間かは不明)
         v=re.search(r'(\d+|-)\s+(\d+|-)\s+(\d+|-)\s*$',tx)
         avg=[None if x=='-' else int(x) for x in v.groups()] if v else None
-        dpa=('sale_none' if '販売なし' in tx else 'other') if 'DPA' in tx else None
-        out[i['slug']]={'slug':i['slug'],'name':i['title'][:-len('の待ち時間')],'area':i['area'],'status':st,'wait':wait,'avg':avg,'dpa':dpa,'raw':tx[:200]}
+        dpa=('sale_none' if '販売なし' in tx else 'on_sale' if '販売中' in tx else 'other') if 'DPA' in tx else None
+        out[i['slug']]={'slug':i['slug'],'name':i['title'][:-len('の待ち時間')],'area':i['area'],'status':st,'wait':wait,'avg':avg,'dpa':dpa,'pct':pct,'pa':'プライオリティ・アクセス' in tx,'raw':tx[:200],'_h':''.join(i['h'])[:700]}
     return list(out.values())
 
 def get(url):
@@ -57,9 +61,13 @@ def main():
         os.makedirs('debug',exist_ok=True); open('debug/page.html','w').write(html)
         if rp.can_fetch(UA,REST): open('debug/restaurant.html','w').write(get(REST))
     if len(items)<10: print('取得件数不足(%d件)。構造が想定と違う可能性。既存JSONは変更しません'%len(items)); return 1
+    diag={'card_html':[i.pop('_h') for i in items[:2]]}  # 診断用(構造確認後に削除)
+    for i in items[2:]: i.pop('_h',None)
+    diag['scripts']=re.findall(r'<script[^>]*\ssrc="([^"]+)"',html)[:15]
+    diag['inline_hits']=[l.strip()[:200] for b in re.findall(r'<script(?![^>]*\ssrc)[^>]*>(.*?)</script>',html,re.S) for l in b.splitlines() if re.search(r'wait|json|fetch|ajax|api|xhr|\.php',l,re.I)][:40]
     closed=sum(1 for i in items if i['status']=='closed')
     j={'schema':1,'generated_at':datetime.datetime.now(JST).isoformat(timespec='seconds'),'source':PAGE,
-       'park_status':'closed' if closed>len(items)/2 else 'open','attractions':items,'restaurants':[]}
+       'park_status':'closed' if closed>len(items)/2 else 'open','attractions':items,'restaurants':[],'diag':diag}
     json.dump(j,open(OUT+'.tmp','w'),ensure_ascii=False,indent=1); os.replace(OUT+'.tmp',OUT)
     print('OK',len(items),'件',j['park_status']); return 0
 if __name__=='__main__': sys.exit(main())
