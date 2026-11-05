@@ -1,29 +1,42 @@
 name: update-wait-times
+
 on:
   schedule:
-    - cron: '*/15 23 6 11 *'   # 11/7 08:00-08:45 JST
-    - cron: '*/15 0-12 7 11 *' # 11/7 09:00-21:45 JST
+    - cron: '*/15 23 6 11 *'
+    - cron: '*/15 0-12 7 11 *'
   workflow_dispatch:
     inputs:
       debug:
         description: 'HTML構造をdebugフォルダに保存する'
         type: boolean
         default: false
+
 permissions:
   contents: write
+
 concurrency:
   group: wait-times
   cancel-in-progress: false
+
 jobs:
   run:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
+      
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python scripts/fetch_wait_times.py ${{ inputs.debug && '--debug' || '' }}
+          
+      - name: Run fetch script
+        run: |
+          if [ "${{ inputs.debug }}" == "true" ]; then
+            python scripts/fetch_wait_times.py --debug
+          else
+            python scripts/fetch_wait_times.py
+          fi
+          
       - name: commit
         run: |
           git config user.name "wait-times-bot"
