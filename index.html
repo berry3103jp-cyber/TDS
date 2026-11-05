@@ -97,7 +97,7 @@ const PX={fs:'ファンタジー',mh:'メディテレーニアン',aw:'アメフ
 function allCard(){if(!D)return '<div class="c m">全アトラクション情報は自動データの読込後に表示されます</div>';
  const st=a=>a.status=='stop'?'休止':a.status=='closed'?'閉園中':a.wait==null?'—':a.wait+'分';
  const o=D.attractions.slice().sort((a,b)=>a.area>b.area?1:a.area<b.area?-1:(b.wait??-1)-(a.wait??-1));
- return `<div class=c><b>全アトラクション</b><div class=m>${fmtT(D.generated_at)}時点（右の小さい数字は朝/昼/夜の平均）</div>${o.map(a=>`<div class=r style="justify-content:space-between"><span>${esc(a.name)} <span class=m>${esc(PX[a.area]||a.area)}</span></span><span><b>${st(a)}</b> <span class=m>${a.avg?a.avg.map(v=>v??'-').join('/'):''}</span></span></div>`).join('')}</div>`}
+ return `<div class=c><b>全アトラクション</b><div class=m>${fmtT(D.generated_at)}時点（右の小さい数字は朝/昼/夜の平均）</div>${o.map(a=>`<div class=r style="justify-content:space-between"><span>${esc(a.name)} <span class=m>${esc(PX[a.area]||a.area)}</span></span><span><b>${st(a)}</b>${a.dpa=='on_sale'?' <span class=tag>DPA販売中</span>':''}${a.pa?' <span class=m>PA限定</span>':''} <span class=m>${a.avg?a.avg.map(v=>v??'-').join('/'):''}</span></span></div>`).join('')}</div>`}
 /* 食事: 手入力の予定(時刻+店名)をタイムラインへ。レストラン待ち時間の自動取得は構造確認後 */
 const RST='https://disneyreal.asumirai.info/realtime/disneysea-restaurant-today.html';
 function addMeal(){const t=document.getElementById('mt').value,n=document.getElementById('mn').value.trim();if(!t||!n)return;S.meals.push([t,n]);save();R()}
