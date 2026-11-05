@@ -1,140 +1,297 @@
-<!DOCTYPE html>
-<html lang="ja"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>DisneySea 攻略 11/7</title>
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1d35"><title>TDS Navigator v3</title>
 <style>
-/* 配色: 深い海の藍 + 真鍮色(必須) + 珊瑚色(警告)。変数はライト/ダーク両対応 */
-:root{--bg:#e9eff3;--c:#fff;--t:#10263a;--m:#5d7083;--a:#0a5c7a;--br:#a8741a;--w:#c0392b;--ok:#1f7a4d;--bd:#cfd9e0;color-scheme:light dark}
-@media(prefers-color-scheme:dark){:root{--bg:#0b1b29;--c:#12293c;--t:#e6eef5;--m:#8fa6b8;--a:#5cc8e6;--br:#e0b35a;--w:#ff8a78;--ok:#6fdc9c;--bd:#24425a}}
-*{box-sizing:border-box}html,body{margin:0}
-body{background:var(--bg);color:var(--t);font:15px/1.5 -apple-system,"Hiragino Sans",sans-serif;padding:env(safe-area-inset-top) 0 calc(64px + env(safe-area-inset-bottom))}
-main{padding:12px;max-width:560px;margin:auto}
-.c{background:var(--c);border:1px solid var(--bd);border-radius:10px;padding:12px;margin-bottom:10px}
-.big{font:700 40px/1 ui-serif,"Hiragino Mincho ProN",serif;letter-spacing:.02em}
-.m{color:var(--m);font-size:13px}.w{color:var(--w)}.ok{color:var(--ok)}
-.rec{border-left:6px solid var(--br)}.rec b{font:700 22px/1.3 ui-serif,"Hiragino Mincho ProN",serif}
-.tag{font-size:11px;border:1px solid var(--br);color:var(--br);border-radius:4px;padding:0 5px;margin-left:6px}
-nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--c);border-top:1px solid var(--bd);padding-bottom:env(safe-area-inset-bottom)}
-nav button{flex:1;border:0;background:none;color:var(--m);font:600 13px -apple-system,sans-serif;padding:14px 0}
-nav button.on{color:var(--a);box-shadow:inset 0 3px var(--a)}
-button.b{background:var(--a);color:var(--bg);border:0;border-radius:8px;padding:12px 14px;font:600 15px -apple-system,sans-serif;min-height:44px}
-button.g{background:none;border:1px solid var(--bd);color:var(--t)}
-input,select{font:16px -apple-system,sans-serif;background:var(--bg);color:var(--t);border:1px solid var(--bd);border-radius:6px;padding:8px;min-height:40px;max-width:100%}
-input[type=number]{width:84px}
-.r{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:6px}
-.past{opacity:.45}li{margin:4px 0}ul{padding-left:18px;margin:6px 0}
-</style></head><body><main id="m"></main>
-<nav id="n"></nav>
+:root{--n:#0b1d35;--n2:#173b5d;--g:#d8ad55;--g2:#f4dfa9;--bg:#f1f3f5;--paper:#fffdf8;--ink:#202d3b;--muted:#687482;--line:#e5dfd4;--green:#287653;--red:#b8413d;--orange:#a96a17;--blue:#315f91}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif}
+button,input,select{font:inherit}button{cursor:pointer}.app{max-width:1080px;margin:auto;min-height:100vh;background:#f5f6f7}
+header{padding:17px 18px 14px;background:linear-gradient(115deg,var(--n),var(--n2));border-bottom:3px solid var(--g);color:white}
+.brand{display:flex;justify-content:space-between;align-items:center;gap:10px}.brand h1{margin:0;color:var(--g2);font:500 22px Georgia,serif;letter-spacing:.08em}.brand small{display:block;font:10px inherit;letter-spacing:.15em;color:#c8d5e2;margin-top:4px}.datepill{font-size:11px;border:1px solid #8196aa;border-radius:99px;padding:5px 9px}
+main{padding:14px 13px 50px}.tabs{display:flex;gap:5px;padding:5px;background:#e5e9ed;border-radius:12px;position:sticky;top:0;z-index:10;margin-bottom:15px}
+.tab{flex:1;border:0;background:transparent;color:#536171;border-radius:8px;padding:10px 3px;font-size:12px;font-weight:700}.tab.active{background:var(--n);color:white}
+.view{display:none}.view.active{display:block}.head{display:flex;justify-content:space-between;align-items:end;gap:8px;margin:3px 0 12px}h2{font-size:19px;color:var(--n);margin:0}.desc,.muted{font-size:11px;color:var(--muted);line-height:1.5;margin-top:4px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px;box-shadow:0 3px 12px #10253a0d}.card.dark{background:linear-gradient(130deg,var(--n),#1a4165);color:white;border-color:#294d70}.card h3{font-size:14px;color:var(--n);margin:0 0 10px}.dark h3{color:var(--g2)}
+.row{display:flex;align-items:center;gap:9px}.between{justify-content:space-between}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}.field{display:grid;gap:5px;margin:8px 0}
+label{font-size:11px;font-weight:700;color:#536171}input,select{width:100%;min-height:39px;padding:8px 9px;border:1px solid #d5dce3;border-radius:8px;background:#fff;color:var(--ink)}
+button.primary{border:0;border-radius:9px;background:var(--g);color:#17283a;padding:10px 13px;font-weight:800}button.secondary{border:1px solid #d5dce3;border-radius:9px;background:#eef2f5;color:#29415a;padding:8px 10px;font-weight:650}button.ghost{border:1px solid #8298ad;border-radius:8px;background:transparent;color:inherit;padding:7px 9px}.small{font-size:11px;padding:6px 8px!important}
+.badge{display:inline-flex;align-items:center;border-radius:99px;padding:3px 7px;font-size:10px;font-weight:800;white-space:nowrap}.dpa{background:#e8ddf5;color:#63418a}.closed{background:#e3e4e6;color:#62676e}.done{background:#e1f0e7;color:#246a48}.warn{background:#fff0d7;color:#915b0b}.tagmeal{background:#e7f0fa;color:#2b5a88}.tagrest{background:#eee9f7;color:#66508c}
+.item{padding:10px 0;border-bottom:1px solid var(--line)}.item:last-child{border-bottom:0}.itemtop{display:flex;justify-content:space-between;align-items:center;gap:8px}.itemname{font-size:13px;font-weight:750}.itemmeta{font-size:10px;color:var(--muted);margin-top:3px}
+.prefbuttons{display:flex;gap:4px;flex-shrink:0}.prefbuttons button{border:1px solid #d5dce3;background:#fff;color:#536171;border-radius:7px;padding:6px 8px;font-size:11px;font-weight:800}.prefbuttons button.sel{background:var(--n);border-color:var(--n);color:white}
+.pS{background:#fbe5e3;color:#a1322e}.pA{background:#fff0d7;color:#98600f}.pB{background:#e5effb;color:#315e91}.pX{background:#e8e8ea;color:#646971}
+.attraction.closedrow{opacity:.48;filter:grayscale(1)}.wait{font-size:18px;font-weight:800;color:var(--n);white-space:nowrap}.wait small{display:block;font-size:9px;color:var(--muted);font-weight:500;text-align:right}
+.reco{border:1px solid #e6d7b8;border-radius:11px;background:#fffaf0;padding:12px;margin:9px 0}.reason{font-size:11px;color:#5d6873;line-height:1.5;margin:7px 0}
+.kpi{background:#ffffff13;border:1px solid #ffffff25;border-radius:10px;padding:9px}.kpi small{display:block;color:#c7d6e4;font-size:10px}.kpi strong{font-size:21px;display:block;margin-top:2px}
+.checkrow{display:flex;gap:14px;flex-wrap:wrap;margin:8px 0}.checkrow label{display:flex;align-items:center;gap:6px;font-size:12px}input[type=checkbox]{width:auto;min-height:0;accent-color:var(--n)}
+.ranklabel{min-width:26px;height:24px;border-radius:7px;background:var(--n);color:white;display:grid;place-items:center;font-size:11px;font-weight:800}
+.timeline{border-left:2px solid #d7bf85;margin:7px 0 0 8px;padding-left:16px}.event{position:relative;padding:0 0 15px}.event:before{content:"";position:absolute;width:9px;height:9px;border-radius:50%;background:var(--g);left:-22px;top:4px;border:2px solid white}.event.completed:before{background:var(--green)}.event strong{font-size:12px}.event small{display:block;color:var(--muted);font-size:10px;margin-top:4px}
+.notice{padding:10px;border:1px solid #efd49b;background:#fff6e4;border-radius:9px;color:#77571f;font-size:11px;line-height:1.5}.toolbar{display:flex;gap:7px;flex-wrap:wrap}.toolbar>*{flex:1}
+.dpa-row{display:grid;grid-template-columns:minmax(0,1fr) 132px;gap:9px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}.dpa-row:last-child{border:0}
+.restaurant-row{display:grid;grid-template-columns:24px minmax(0,1fr);gap:8px;padding:8px 0;border-bottom:1px solid var(--line)}
+.restaurant-row .grid2{grid-template-columns:1.15fr 1fr}
+.restaurant-row .field{margin:4px 0}
+.restaurant-row .checkrow{margin:4px 0 0}.restaurant-row:last-child{border:0}
+.inline-fields{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+footer{text-align:center;padding:14px;color:#8b949d;font-size:10px}
+
+.legend{display:flex;flex-wrap:wrap;gap:7px 12px;padding:9px 0 10px;font-size:10px;color:#596575}
+.legend span{display:inline-flex;align-items:center;gap:4px}
+.legend-chip{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:6px;font-size:10px}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%}
+.dot.low{background:#32956b}.dot.mid{background:#d4a32f}.dot.high{background:#e58a36}.dot.veryhigh{background:#d6534c}
+.wait-low{color:#218257!important}.wait-mid{color:#a47712!important}.wait-high{color:#cf7624!important}.wait-veryhigh{color:#c33e3a!important}
+.wait-closed{color:#92979e!important;filter:grayscale(1)}
+.today-row-muted{opacity:.43;filter:grayscale(1)}
+.today-row-muted .wait{color:#8b9097!important}
+
+@media(min-width:760px){main{padding:20px 24px 40px}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}.card{padding:17px}.tabs{max-width:700px}}
+@media(max-width:420px){.tab{font-size:10px}.brand h1{font-size:19px}.dpa-row{grid-template-columns:minmax(0,1fr) 120px}}
+</style></head>
+<body><div class="app">
+<header><div class="brand"><div><h1>TDS NAVIGATOR</h1><small>PERSONAL PARK STRATEGY</small></div><span class="datepill">2026.11.07</span></div></header>
+<main>
+<nav class="tabs">
+<button class="tab active" data-tab="today">今日</button><button class="tab" data-tab="setup">事前設定</button><button class="tab" data-tab="dpa">DPA管理</button><button class="tab" data-tab="plan">予定表</button><button class="tab" data-tab="status">現地入力</button>
+</nav>
+
+<section id="today" class="view active">
+<div class="head"><div><h2>今日のパーク攻略</h2><div class="desc">希望・待ち時間・現在地から次の行動を選ぶ</div></div><span class="badge done" id="dataBadge">手動</span></div>
+<div class="card dark"><div class="row between"><div><small style="color:#cbd8e5">現在地</small><div id="currentArea" style="font-weight:800;margin-top:3px">メディテレーニアンハーバー</div></div><button class="ghost small" onclick="tab('status')">変更</button></div>
+<div class="grid2" style="margin-top:12px"><div class="kpi"><small>現在時刻</small><strong id="clock">10:30</strong></div><div class="kpi"><small>アトラクション完了</small><strong id="doneCount">0</strong></div></div></div>
+<div class="head"><div><h2>次のおすすめ</h2><div class="desc">除外・休止・完了を除いて候補を表示</div></div><button class="secondary small" onclick="renderReco()">再計算</button></div>
+<div id="reco"></div>
+<div class="card" id="dpaCountdownCard">
+ <div class="row between"><h3 style="margin:0">次のDPA購入タイミング</h3><span class="badge dpa">DPA</span></div>
+ <div class="grid2" style="margin-top:8px">
+  <div class="kpi" style="background:#f1f4f7;border-color:#e0e5ea"><small style="color:#687482">次に購入できる目安</small><strong id="dpaCountdown" style="color:#0b1d35">--:--</strong></div>
+  <div class="kpi" style="background:#f1f4f7;border-color:#e0e5ea"><small style="color:#687482">次に狙う候補</small><strong id="dpaNextTarget" style="font-size:15px;color:#0b1d35">未設定</strong></div>
+ </div>
+ <div id="dpaCountdownNote" class="muted" style="margin-top:7px">購入履歴と希望度から目安を表示します。</div>
+ <button class="secondary small" style="margin-top:8px" onclick="tab('dpa')">DPA購入状況を確認</button>
+</div>
+<div class="card"><div class="row between"><h3 style="margin:0">希望アトラクションの状況</h3><button class="secondary small" onclick="tab('setup')">希望度を編集</button></div>
+ <div class="legend"><span><b class="legend-chip pS">S</b> 絶対行く</span><span><b class="legend-chip pA">A</b> できれば行きたい</span><span><b class="legend-chip pB">B</b> どっちでも</span><span><b class="legend-chip pX">X</b> 行かない</span></div>
+ <div class="legend wait-legend"><span><i class="dot low"></i> 0–20分</span><span><i class="dot mid"></i> 21–40分</span><span><i class="dot high"></i> 41–60分</span><span><i class="dot veryhigh"></i> 61分以上</span></div>
+ <div id="todayList"></div></div>
+<div class="notice" id="dataNote"></div>
+</section>
+
+<section id="setup" class="view">
+<div class="head"><div><h2>事前設定</h2><div class="desc">11月7日の施設情報を初期設定。希望度は自由に変更可能</div></div></div>
+<div class="card"><div class="row between"><h3 style="margin:0">① アトラクションの希望度</h3><span class="muted" id="attractionCount"></span></div>
+<div class="legend"><span><b class="legend-chip pS">S</b> 絶対行く</span><span><b class="legend-chip pA">A</b> できれば行きたい</span><span><b class="legend-chip pB">B</b> どっちでも</span><span><b class="legend-chip pX">X</b> 行かない</span></div>
+<div class="checkrow"><label><input type="checkbox" id="showClosed" checked onchange="renderAttractions()">休止施設も表示</label><label><input type="checkbox" id="showOnlyDpa" onchange="renderAttractions()">DPA対象のみ</label></div>
+<div id="attractionList"></div></div>
+<div class="card"><div class="row between"><h3 style="margin:0">② レストラン・休憩の希望</h3><button class="secondary small" onclick="addRestaurant()">＋候補を追加</button></div>
+<p class="muted">第一希望・第二希望…の順に並びます。希望時間は1時間単位で選択できます。</p><div id="restaurantList"></div>
+<div class="divider"></div><h3 style="margin-top:12px">食事・休憩予定の追加</h3>
+<div class="checkrow"><label><input type="checkbox" id="typeMeal" checked>食事</label><label><input type="checkbox" id="typeRest">休憩</label></div>
+<div class="grid2"><div class="field"><label>予定名</label><input id="breakName" placeholder="例：軽食・ベンチで休憩"></div><div class="field"><label>エリア</label><select id="breakArea"></select></div><div class="field"><label>希望時間</label><select id="breakTime"></select></div><div class="field"><label>所要時間（分）</label><select id="breakDuration"><option>30</option><option selected>60</option><option>90</option><option>120</option></select></div></div>
+<button class="secondary" style="width:100%;margin-top:5px" onclick="addBreak()">予定に追加</button>
+<div id="breakList"></div></div>
+<button class="primary" style="width:100%" onclick="saveAll()">設定を保存</button><div id="saved" class="muted" style="text-align:center"></div>
+</section>
+
+<section id="dpa" class="view">
+<div class="head"><div><h2>DPA購入管理</h2><div class="desc">希望度と購入状況を別々に管理</div></div></div>
+<div class="notice">11月7日時点の対象として、アトラクション8件＋ビリーヴ！を登録。購入状態・購入時刻・利用時間は手入力です。購入可能時刻の表示は設定した間隔による簡易目安です。</div>
+<div class="card" style="margin-top:12px">
+ <h3>次のDPA購入までの間隔</h3>
+ <div class="grid2"><div class="field"><label for="dpaInterval">購入後の基本待ち時間（分）</label><select id="dpaInterval" onchange="saveDpaInterval()"><option value="60">60分</option><option value="90">90分</option><option value="120">120分</option></select></div><div class="field"><label>手動時刻（実時間オフ時）</label><input id="dpaCurrentTime" type="time" value="10:30" onchange="setDpaClock(this.value)"></div></div>
+ <div class="muted">※実際の購入可能条件は公式ルールに従ってください。購入時刻＋設定分数と、直近の枠の利用開始時刻の早い方を目安にします。</div>
+</div>
+<div class="card"><div class="row between"><h3 style="margin:0">DPA希望度・購入状況</h3><span class="muted">全9対象</span></div><div id="dpaList"></div></div>
+</section>
+
+<section id="plan" class="view">
+<div class="head"><div><h2>今日の予定表</h2><div class="desc">購入済みDPAは利用時間を確定予定として反映</div></div><button class="secondary small" onclick="tab('setup')">予定を追加</button></div>
+<div class="card"><div class="row between"><h3 style="margin:0">タイムライン</h3><span class="muted">時刻順</span></div><div id="timeline" class="timeline"></div></div>
+<div class="card"><h3>予定表のタグ</h3><div class="checkrow"><span class="badge dpa">DPA確定</span><span class="badge tagmeal">食事</span><span class="badge tagrest">休憩</span><span class="badge done">完了</span></div><p class="muted">DPA購入済みの場合は「利用時間」を予定表に反映。購入予定・購入不可は確定予定にはしません。</p></div>
+</section>
+
+<section id="status" class="view">
+<div class="head"><div><h2>現地状況の入力</h2><div class="desc">自動データの確認と、手動での補正</div></div></div>
+<div class="card"><h3>待ち時間データ（自動）</h3><div id="dataInfo" class="muted"></div><div class="checkrow"><label><input type="checkbox" id="autoApply" checked onchange="setAuto(this.checked)">自動データを待ち時間に反映</label></div><div class="toolbar"><button class="primary small" onclick="loadJSON()">今すぐ確認</button><a href="https://disneyreal.asumirai.info/realtime/disneysea-wait-today.html" target="_blank" rel="noopener"><button class="secondary small">元サイトを開く</button></a></div></div>
+<div class="card"><h3>現在地・時刻</h3><div class="checkrow"><label><input type="checkbox" id="realClock" checked onchange="setRealClock(this.checked)">実際の時刻で進める（オフ=手動時刻）</label></div><div class="field"><label>現在地</label><select id="areaSelect"></select></div><div class="field"><label>現在時刻</label><input id="timeInput" type="time" value="10:30"></div><button class="primary" style="width:100%" onclick="updateLocation()">反映する</button></div>
+<div class="card"><h3>待ち時間・運営状況</h3><div id="waitInputs"></div><button class="primary" style="width:100%;margin-top:10px" onclick="saveWaits()">状況を保存</button></div>
+</section>
+</main><footer>v3 · 待ち時間は自動データ(wait-times.json)＋手入力 · データはこのブラウザ内に保存</footer></div>
 <script>
-/* ===== データ定義 =====
- A: [id, 表示名, エリア, 必須(1/0)]  SLUG: 個別ページURL(2026-11-04にサイト上で実在確認済み) */
-const A=[['soar','ソアリン','MH',1],['frozen','アナとエルサのフローズンジャーニー','FS',1],['center','センター・オブ・ジ・アース','MI',1],['tot','タワー・オブ・テラー','AW',1],['peter','ピーターパン','FS',0],['rapun','ラプンツェル','FS',0],['toy','トイ・ストーリー・マニア！','AW',0],['rag','レイジングスピリッツ','LD',0]];
-const SLUG={soar:'mh_soaring',frozen:'fs_frozen_journey',center:'mi_center',tot:'aw_tot',peter:'fs_neverland_adventure',rapun:'fs_lantern_festival',toy:'aw_toy',rag:'ld_raging'};
-const SRC='https://disneyreal.asumirai.info/realtime/disneysea-wait-today.html';
-const AR={MH:'メディテレーニアン',AW:'アメフロ',LD:'ロストリバー',MI:'ミステリアス',FS:'ファンタジー'};
-/* エリア間徒歩分(★推定値・未実測。HANDOFF参照) */
-const WK={'MH-AW':8,'MH-LD':8,'MH-MI':6,'MH-FS':15,'AW-LD':6,'AW-MI':10,'AW-FS':14,'LD-MI':5,'LD-FS':7,'MI-FS':8};
-const walk=(a,b)=>a==b?0:(WK[a+'-'+b]??WK[b+'-'+a]??10);
-const DL={none:'未取得',got:'取得済み',used:'利用済み',sold:'売り切れ',stop:'運休・取得不可'};
-const K='dsea1';
-/* S.c=設定 S.a[id]={w待ち,st(open/stop),av[朝,昼,夜],dn体験済,d DPA状態,b購入時刻,s,e利用枠} */
-let S;try{S=JSON.parse(localStorage.getItem(K))}catch(e){}
-S=S||{c:{en:'08:45',cl:'21:00',n:2,loc:'MH',gap:60,sim:'',nb:'',sh:[['19:15','Believe! Sea of Dreams'],['20:30','花火']]},a:{},up:'',msg:''};
-A.forEach(x=>S.a[x[0]]=Object.assign({w:'',st:'open',av:null,dn:0,d:'none',b:'',s:'',e:''},S.a[x[0]]));
-const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
-S.c.auto=S.c.auto??true;S.meals=S.meals||[];S.applied=S.applied||null;
-let T='home',SORT='def';
-/* ===== 時刻ユーティリティ(分単位) ===== */
-const tm=s=>{if(!s)return null;const p=s.split(':');return +p[0]*60+ +p[1]};
-const hm=m=>m==null||isNaN(m)?'--:--':String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
-const now=()=>S.c.sim?tm(S.c.sim):new Date().getHours()*60+new Date().getMinutes();
-const per=m=>m<630?0:m<1110?1:2; /* 0朝(〜10:30) 1昼(〜18:30) 2夜 */
-/* 次回DPA購入可能時刻 = min(最後の購入+間隔, その枠の利用開始)。手動上書き可 */
-function nextBuy(){if(S.c.nb)return tm(S.c.nb);const g=A.map(x=>S.a[x[0]]).filter(d=>d.d=='got'&&d.b);if(!g.length)return null;
- const l=g.reduce((p,q)=>tm(q.b)>tm(p.b)?q:p);const c=[tm(l.b)+ +S.c.gap];if(l.s)c.push(tm(l.s));return Math.min(...c)}
-/* ===== 最適化: 低スコアほど「今行くべき」 ===== */
-function rec(){const t=now(),p=per(t),L=S.c.loc,o=[];
- for(const [id,nm,ar,mu] of A){const d=S.a[id];if(d.dn||d.st=='stop')continue;const wk=walk(L,ar);let sc,why=[];
-  if(d.d=='got'&&d.s){const s=tm(d.s),e=d.e?tm(d.e):s+60;
-   if(t>e)why.push('DPA枠が過ぎています');
-   else if(t>=s){sc=-999;why.push('DPA枠の利用時間内')}
-   else if(s-t<=wk+15){sc=-500;why.push('DPA開始 '+d.s+'（移動'+wk+'分）')}
-   else continue}
-  if(sc==null){let w=d.w===''?null:+d.w;if(w==null&&d.av&&d.av[p]!=null)w=d.av[p];
-   if(w==null){w=60;why.push('待ち時間未入力(仮60分)')}else why.push('待ち'+w+'分＋移動'+wk+'分');
-   sc=w+wk-(mu?25:0);if(mu)why.push('必須');
-   if(!mu&&d.av&&d.av[p]!=null){const lt=Math.min(...d.av.slice(p+1).filter(v=>v!=null),999);if(lt<d.av[p]){sc+=(d.av[p]-lt)*.5;why.push('夜に空く傾向→後回し')}}}
-  o.push({id,nm,sc,why,ar})}
- return o.sort((a,b)=>a.sc-b.sc)}
-/* ===== 操作 ===== */
-function U(id,k,v){S.a[id][k]=(k=='av')?v:v;save();R()}
-function C(k,v){S.c[k]=v;save();R()}
-function fin(id){const d=S.a[id];d.dn=1;if(d.d=='got')d.d='used';S.c.loc=A.find(x=>x[0]==id)[2];save();R()}
-/* ===== 自動データ: GitHub Actionsが作る wait-times.json を読む =====
- 検証(okD): schema=1 / 10件以上 / 型と範囲。異常なら拒否して前回の正常データ(dsea1d)を保持 */
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const areas=["メディテレーニアンハーバー","アメリカンウォーターフロント","ポートディスカバリー","ロストリバーデルタ","ファンタジースプリングス","アラビアンコースト","マーメイドラグーン","ミステリアスアイランド"];
+const attractions=[
+["gondola","ヴェネツィアン・ゴンドラ","メディテレーニアンハーバー",20,false],
+["transit_med","ディズニーシー・トランジットスチーマーライン（メディテレーニアンハーバー）","メディテレーニアンハーバー",0,false,true],
+["fortress","フォートレス・エクスプロレーション","メディテレーニアンハーバー",0,false],
+["soarin","ソアリン：ファンタスティック・フライト","メディテレーニアンハーバー",80,true],
+["toy","トイ・ストーリー・マニア！","アメリカンウォーターフロント",70,true],
+["tower","タワー・オブ・テラー","アメリカンウォーターフロント",45,true],
+["turtle","タートル・トーク","アメリカンウォーターフロント",20,false],
+["rail_am","ディズニーシー・エレクトリックレールウェイ（アメリカンウォーターフロント）","アメリカンウォーターフロント",10,false],
+["steamer_am","ディズニーシー・トランジットスチーマーライン（アメリカンウォーターフロント）","アメリカンウォーターフロント",10,false],
+["bigcity","ビッグシティ・ヴィークル","アメリカンウォーターフロント",5,false],
+["fortress_challenge","フォートレス・エクスプロレーション“ザ・レオナルドチャレンジ”","メディテレーニアンハーバー",0,false],
+["rail_pd","ディズニーシー・エレクトリックレールウェイ（ポートディスカバリー）","ポートディスカバリー",10,false],
+["nemo","ニモ＆フレンズ・シーライダー","ポートディスカバリー",30,false],
+["raging","レイジングスピリッツ","ロストリバーデルタ",30,true],
+["indiana","インディ・ジョーンズ・アドベンチャー：クリスタルスカルの魔宮","ロストリバーデルタ",0,false,true],
+["steamer_lost","ディズニーシー・トランジットスチーマーライン（ロストリバーデルタ）","ロストリバーデルタ",10,false],
+["peter","ピーターパンのネバーランドアドベンチャー","ファンタジースプリングス",50,true],
+["rapunzel","ラプンツェルのランタンフェスティバル","ファンタジースプリングス",55,true],
+["tinker","フェアリー・ティンカーベルのビジーバギー","ファンタジースプリングス",35,false],
+["frozen","アナとエルサのフローズンジャーニー","ファンタジースプリングス",65,true],
+["caravan","キャラバンカルーセル","アラビアンコースト",5,false],
+["jasmine","ジャスミンのフライングカーペット","アラビアンコースト",25,false],
+["magic","マジックランプシアター","アラビアンコースト",15,false],
+["sindbad","シンドバッド・ストーリーブック・ヴォヤッジ","アラビアンコースト",5,false],
+["mermaid","マーメイドラグーンシアター","マーメイドラグーン",0,false,true],
+["ariel","アリエルのプレイグラウンド","マーメイドラグーン",0,false],
+["flounder","フランダーのフライングフィッシュコースター","マーメイドラグーン",30,false],
+["blowfish","ブローフィッシュ・バルーンレース","マーメイドラグーン",20,false],
+["jumpin","ジャンピン・ジェリーフィッシュ","マーメイドラグーン",15,false],
+["scuttle","スカットルのスクーター","マーメイドラグーン",20,false],
+["whirlpool","ワールプール","マーメイドラグーン",10,false],
+["journey","センター・オブ・ジ・アース","ミステリアスアイランド",35,true],
+["20k","海底2万マイル","ミステリアスアイランド",20,false]
+].map(x=>({id:x[0],name:x[1],area:x[2],wait:x[3],hasDpa:x[4],closed:!!x[5],pref:"B",status:x[5]?"休止":"運営中",done:false}));
+const dpaItems=[
+{id:"frozen",name:"アナとエルサのフローズンジャーニー",price:2500,pref:"B"},
+{id:"rapunzel",name:"ラプンツェルのランタンフェスティバル",price:2000,pref:"B"},
+{id:"peter",name:"ピーターパンのネバーランドアドベンチャー",price:2000,pref:"B"},
+{id:"soarin",name:"ソアリン：ファンタスティック・フライト",price:2500,pref:"B"},
+{id:"toy",name:"トイ・ストーリー・マニア！",price:2000,pref:"B"},
+{id:"tower",name:"タワー・オブ・テラー",price:1500,pref:"B"},
+{id:"journey",name:"センター・オブ・ジ・アース",price:2000,pref:"B"},
+{id:"raging",name:"レイジングスピリッツ",price:1500,pref:"B"},
+{id:"believe",name:"ビリーヴ！～シー・オブ・ドリームス～",price:2500,pref:"B",show:true}
+].map(x=>({...x,status:"未定",purchaseTime:"",slot:""}));
+let restaurants=[
+{name:"マゼランズ",area:"メディテレーニアンハーバー",time:"12:00",priority:1,planned:false},
+{name:"リストランテ・ディ・カナレット",area:"メディテレーニアンハーバー",time:"13:00",priority:2,planned:false}
+];
+let breaks=[],events=[{time:"",name:"",kind:""}],currentArea=areas[0],currentTime="10:30";
+const $=id=>document.getElementById(id);
+const hourOptions=()=>Array.from({length:14},(_,i)=>`<option value="${String(i+8).padStart(2,"0")}:00">${i+8}:00</option>`).join("");
+/* ===== v3.1 追加: 自動データ(wait-times.json)・実時間・DPA/おすすめ改良 ===== */
+const SRC="https://disneyreal.asumirai.info/realtime/disneysea-wait-today.html";
+const AC={mh:"メディテレーニアンハーバー",aw:"アメリカンウォーターフロント",pd:"ポートディスカバリー",ld:"ロストリバーデルタ",fs:"ファンタジースプリングス",ac:"アラビアンコースト",ml:"マーメイドラグーン",mi:"ミステリアスアイランド"};
+const ACODE=Object.fromEntries(Object.entries(AC).map(([k,v])=>[v,k]));
+const SL={soarin:"mh_soaring",frozen:"fs_frozen_journey",journey:"mi_center",tower:"aw_tot",peter:"fs_neverland_adventure",rapunzel:"fs_lantern_festival",toy:"aw_toy",raging:"ld_raging"};
+/* エリア間の徒歩分(★推定値・未実測) */
+const WKM={"mh-aw":8,"mh-ld":8,"mh-mi":6,"mh-fs":15,"mh-pd":10,"mh-ac":8,"mh-ml":10,"aw-ld":6,"aw-mi":10,"aw-fs":14,"aw-pd":5,"ld-mi":5,"ld-fs":7,"mi-fs":8,"mi-pd":6,"mi-ml":12,"mi-ac":8,"ac-ml":4,"ac-ld":6};
+const wk=(a,b)=>{if(a===b)return 0;const x=ACODE[a],y=ACODE[b];return WKM[x+"-"+y]??WKM[y+"-"+x]??10};
+const KEY="tdsnav-v3";let realClock=true,auto=true,applied=null,dataMsg="";
+const hmm=m=>String(Math.floor(m/60)%24).padStart(2,"0")+":"+String(m%60).padStart(2,"0");
+const tmm=s=>{if(!s)return null;const p=s.split(":");return +p[0]*60+ +p[1]};
+const fmtT=i=>{const d=new Date(i);return hmm(d.getHours()*60+d.getMinutes())};
+const nz=s=>String(s).replace(/[\s・：:！!～~“”"（）()\-＆&]/g,"");
+/* JSON検証: schema=1・10件以上・型と範囲。異常なら拒否し前回の正常データ(dsea1d)を保持 */
 const okD=d=>{try{if(!d||d.schema!==1||isNaN(Date.parse(d.generated_at))||!Array.isArray(d.attractions)||d.attractions.length<10)return false;
  const n=v=>v===null||(Number.isInteger(v)&&v>=0&&v<=600);
- return d.attractions.every(a=>typeof a.slug=='string'&&typeof a.name=='string'&&n(a.wait)&&(a.avg===null||(Array.isArray(a.avg)&&a.avg.length==3&&a.avg.every(n))))}catch(e){return false}};
-let D=null;try{D=JSON.parse(localStorage.getItem('dsea1d'))}catch(e){}if(!okD(D))D=null;
-const fmtT=i=>{const d=new Date(i);return hm(d.getHours()*60+d.getMinutes())};
+ return d.attractions.every(a=>typeof a.slug=="string"&&typeof a.name=="string"&&n(a.wait)&&(a.avg===null||(Array.isArray(a.avg)&&a.avg.length==3&&a.avg.every(n))))}catch(e){return false}};
+let D=null;try{D=JSON.parse(localStorage.getItem("dsea1d"))}catch(e){}if(!okD(D))D=null;
 const age=()=>D?Math.round((Date.now()-Date.parse(D.generated_at))/60000):null;
-const dLine=()=>{if(!D)return 'データ更新: 手動入力のみ';const g=age();return '自動データ '+fmtT(D.generated_at)+'（'+g+'分前）'+(g>30?' ⚠古い可能性。手入力で補正':'')};
-/* 追跡中8件へ反映(新しい取得時刻のときだけ。反映後の手入力は次の更新まで有効) */
-function applyD(){if(!D||!S.c.auto||S.applied==D.generated_at)return;
- for(const id in SLUG){const a=D.attractions.find(x=>x.slug==SLUG[id]);if(!a)continue;const o=S.a[id];
-  if(a.status=='stop')o.st='stop';else if(a.status=='open'){o.st='open';if(a.wait!==null)o.w=String(a.wait)}
-  if(a.avg)o.av=a.avg}
- S.applied=D.generated_at;S.up=fmtT(D.generated_at)+' 自動'}
-async function loadJSON(){S.msg='確認中…';R();
- try{const r=await fetch('wait-times.json?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);const j=await r.json();
-  if(!okD(j))throw new Error('JSONの形式が異常なため読み込みを拒否');
-  if(D&&Date.parse(j.generated_at)<Date.parse(D.generated_at))throw new Error('古いデータのため無視');
-  D=j;try{localStorage.setItem('dsea1d',JSON.stringify(j))}catch(e){}applyD();S.msg='読み込み成功 '+fmtT(j.generated_at)}
- catch(e){S.msg='自動データ読込に失敗: '+e.message+'（前回データと手入力を維持）'}
- save();R()}
-const PX={fs:'ファンタジー',mh:'メディテレーニアン',aw:'アメフロ',ld:'ロストリバー',mi:'ミステリアス',ac:'アラビアン',ml:'マーメイド',pd:'ポートディスカバリー'};
-function allCard(){if(!D)return '<div class="c m">全アトラクション情報は自動データの読込後に表示されます</div>';
- const st=a=>a.status=='stop'?'休止':a.status=='closed'?'閉園中':a.wait==null?'—':a.wait+'分';
- const o=D.attractions.slice().sort((a,b)=>a.area>b.area?1:a.area<b.area?-1:(b.wait??-1)-(a.wait??-1));
- return `<div class=c><b>全アトラクション</b><div class=m>${fmtT(D.generated_at)}時点（右の小さい数字は朝/昼/夜の平均）</div>${o.map(a=>`<div class=r style="justify-content:space-between"><span>${esc(a.name)} <span class=m>${esc(PX[a.area]||a.area)}</span></span><span><b>${st(a)}</b>${a.dpa=='on_sale'?' <span class=tag>DPA販売中</span>':''}${a.pa?' <span class=m>PA限定</span>':''} <span class=m>${a.avg?a.avg.map(v=>v??'-').join('/'):''}</span></span></div>`).join('')}</div>`}
-/* 食事: 手入力の予定(時刻+店名)をタイムラインへ。レストラン待ち時間の自動取得は構造確認後 */
-const RST='https://disneyreal.asumirai.info/realtime/disneysea-restaurant-today.html';
-function addMeal(){const t=document.getElementById('mt').value,n=document.getElementById('mn').value.trim();if(!t||!n)return;S.meals.push([t,n]);save();R()}
-const mealCard=()=>`<div class=c><b>食事の予定</b>${S.meals.map((x,i)=>`<div class=r>${x[0]} ${esc(x[1])} <button class="b g" onclick="S.meals.splice(${i},1);save();R()">削除</button></div>`).join('')}<div class=r><input id=mt type=time><input id=mn placeholder="店名・予約など" style="flex:1"><button class=b onclick="addMeal()">追加</button></div><div class=r><a href="${RST}" target=_blank rel=noopener><button class="b g">レストラン待ち時間(元サイト)</button></a></div><div class=m>レストラン情報の自動取得は、ページ構造の確認後に対応します</div></div>`;
-/* ===== 画面 ===== */
-const sel=(id,k,o,v)=>`<select onchange="U('${id}','${k}',this.value)">${Object.keys(o).map(x=>`<option value="${x}" ${x==v?'selected':''}>${o[x]}</option>`).join('')}</select>`;
-function R(){const t=now(),nb=nextBuy(),cl=tm(S.c.cl),en=tm(S.c.en);let h='';
- if(T=='home'){const r=rec(),mu=A.filter(x=>x[3]),dn=mu.filter(x=>S.a[x[0]].dn).length;let est=0;
-  mu.forEach(x=>{const d=S.a[x[0]];if(d.dn||d.st=='stop')return;est+=d.d=='got'?10:((d.w!==''?+d.w:(d.av&&d.av[per(t)]!=null?d.av[per(t)]:60))+12)});
-  h=`<div class=c><div class=big>${hm(t)}</div><div class=m>閉園まで ${hm(cl-t)} ／ 入園から ${t>=en?hm(t-en):'—'}</div><div class="m ${D&&age()>30?'w':''}">${dLine()}</div></div>`;
-  if(r[0])h+=`<div class="c rec"><div class=m>次のおすすめ（現在地: ${AR[S.c.loc]}）</div><b>${r[0].nm}</b><ul>${r[0].why.map(x=>'<li>'+x+'</li>').join('')}</ul><button class=b onclick="fin('${r[0].id}')">体験完了（現在地を更新）</button></div>`+
-   r.slice(1,3).map(x=>`<div class=c><b>${x.nm}</b><div class=m>${x.why.join(' ／ ')}</div></div>`).join('');
-  else h+='<div class=c>候補がありません。待ち時間を入力するか、運営状況を確認してください。</div>';
-  h+=`<div class=c><b>DPA</b><div>次回購入可能: <b>${nb==null?'—':hm(nb)}</b> ${nb!=null&&t>=nb?'<span class=ok>（今すぐ購入可）</span>':''}</div><div class=m>${A.some(x=>S.a[x[0]].d=='got'||S.a[x[0]].d=='used')?'公式ルールで再確認を':'最初はソアリン → 不可ならアナ雪'}</div></div>
-   <div class=c><b>必須 ${dn}/4 達成</b><div class="m ${est>cl-t?'w':''}">残り必須の推定 ${est}分 ／ 閉園まで ${cl-t}分${est>cl-t?'（間に合わない見込み。順序を見直す）':''}</div></div>`}
- if(T=='list'){const o=A.slice();if(SORT=='w')o.sort((a,b)=>(+S.a[a[0]].w||999)-(+S.a[b[0]].w||999));if(SORT=='m')o.sort((a,b)=>b[3]-a[3]);
-  h=`<div class=r><select onchange="SORT=this.value;R()"><option value=def>並び:標準</option><option value=w ${SORT=='w'?'selected':''}>待ち短い順</option><option value=m ${SORT=='m'?'selected':''}>必須優先</option></select></div>`+
-  o.map(([id,nm,ar,mu])=>{const d=S.a[id];return `<div class=c><b>${nm}</b>${mu?'<span class=tag>必須</span>':''}<div class=m>${AR[ar]} ／ 平均 朝${d.av?d.av[0]??'-':'-'} 昼${d.av?d.av[1]??'-':'-'} 夜${d.av?d.av[2]??'-':'-'} ／ DPA:${DL[d.d]}</div>
-   ${id=='tot'?'<div class="m w">サイト上は11/5まで休止予定。当日の運営を要確認</div>':''}
-   <div class=r><input type=number inputmode=numeric placeholder="待ち分" value="${d.w}" onchange="U('${id}','w',this.value)">${sel(id,'st',{open:'運営中',stop:'休止'},d.st)}<label><input type=checkbox ${d.dn?'checked':''} onchange="U('${id}','dn',this.checked?1:0)"> 体験済</label></div></div>`}).join('')+allCard()}
- if(T=='dpa'){const g=A.filter(x=>S.a[x[0]].d=='got'&&S.a[x[0]].s).map(x=>({n:x[1],s:tm(S.a[x[0]].s),e:tm(S.a[x[0]].e)??tm(S.a[x[0]].s)+30})).sort((a,b)=>a.s-b.s);
-  const ov=g.filter((x,i)=>i&&x.s<g[i-1].e);
-  h=`<div class=c>次回購入可能: <b>${nb==null?'—':hm(nb)}</b>（${S.c.n}人分・設定で編集可）</div>`+(ov.length?`<div class="c w">DPA枠が重なっています: ${ov.map(x=>x.n).join('、')}</div>`:'')+
-  A.map(([id,nm])=>{const d=S.a[id];return `<div class=c><b>${nm}</b><div class=r>${sel(id,'d',DL,d.d)}</div>${d.d=='got'?`<div class=r><span class=m>購入</span><input type=time value="${d.b}" onchange="U('${id}','b',this.value)"><span class=m>枠</span><input type=time value="${d.s}" onchange="U('${id}','s',this.value)">〜<input type=time value="${d.e}" onchange="U('${id}','e',this.value)"></div>`:''}</div>`}).join('')+
-  `<div class=c><b>履歴</b>${A.filter(x=>S.a[x[0]].b).sort((a,b)=>tm(S.a[a[0]].b)-tm(S.a[b[0]].b)).map(x=>`<div class=m>${S.a[x[0]].b} ${x[1]}（${DL[S.a[x[0]].d]}）</div>`).join('')||'<div class=m>まだありません</div>'}</div>`}
- if(T=='plan'){const it=[[en,'入園（想定）']];S.c.sh.forEach(s=>it.push([tm(s[0]),s[1]]));
-  A.forEach(x=>{const d=S.a[x[0]];if((d.d=='got'||d.d=='used')&&d.s)it.push([tm(d.s),'DPA枠: '+x[1]+(d.e?'〜'+d.e:'')])});S.meals.forEach(x=>it.push([tm(x[0]),'食事: '+x[1]]));it.push([cl,'閉園']);it.sort((a,b)=>a[0]-b[0]);
-  h='<div class=c><ul style="list-style:none;padding:0">'+it.map(x=>`<li class="${x[0]<t?'past':''}"><b>${hm(x[0])}</b> ${x[1]}</li>`).join('')+'</ul></div>'+mealCard()}
- if(T=='set'){const c=S.c;h=`<div class=c><b>基本設定</b><div class=r>入園<input type=time value="${c.en}" onchange="C('en',this.value)">閉園<input type=time value="${c.cl}" onchange="C('cl',this.value)"></div>
-  <div class=r>DPA人数<input type=number value="${c.n}" onchange="C('n',this.value)">購入間隔(分)<input type=number value="${c.gap}" onchange="C('gap',this.value)"></div>
-  <div class=r>現在地<select onchange="C('loc',this.value)">${Object.keys(AR).map(k=>`<option value=${k} ${k==c.loc?'selected':''}>${AR[k]}</option>`).join('')}</select></div>
-  <div class=r>次回DPA時刻(手動)<input type=time value="${c.nb}" onchange="C('nb',this.value)"></div>
-  <div class=r>ショー1<input type=time value="${c.sh[0][0]}" onchange="S.c.sh[0][0]=this.value;save();R()">ショー2<input type=time value="${c.sh[1][0]}" onchange="S.c.sh[1][0]=this.value;save();R()"></div>
-  <div class=r>テスト用の仮想時刻<input type=time value="${c.sim}" onchange="C('sim',this.value)"></div></div>
-  <div class=c><b>待ち時間データ</b><div class=r><label><input type=checkbox ${c.auto?'checked':''} onchange="S.c.auto=this.checked;S.applied=null;applyD();save();R()"> 自動データを待ち時間に反映</label></div><div class=r><button class=b onclick="loadJSON()">自動データを今すぐ確認</button><a href="${SRC}" target=_blank rel=noopener><button class="b g">元サイトを開く</button></a></div><div class="m ${S.msg.includes('失敗')?'w':''}">${S.msg||'自動データは3分ごとに自分のJSONを確認します'}</div></div>
-  <div class=c><button class="b g" onclick="if(confirm('全データを消します')){localStorage.removeItem(K);location.reload()}">データを初期化</button></div>`}
- $('m').innerHTML=h;$('n').innerHTML=[['home','今'],['list','一覧'],['dpa','DPA'],['plan','予定'],['set','設定']].map(x=>`<button class="${T==x[0]?'on':''}" onclick="T='${x[0]}';R()">${x[1]}</button>`).join('')}
-function $(s){return document.getElementById(s=='m'?'m':'n')}
-applyD();R();loadJSON();setInterval(()=>{if(!document.hidden&&location.protocol!='file:')loadJSON()},180000);setInterval(()=>{if(T=='home'&&!S.c.sim&&!document.activeElement.matches('input,select'))R()},60000);
+function findJ(a){const J=D.attractions;let x=J.find(j=>j.slug===SL[a.id]);if(x)return x;
+ const c=ACODE[a.area],n=nz(a.name),L=J.filter(j=>j.area===c);
+ return L.find(j=>nz(j.name)===n)||L.filter(j=>n.includes(nz(j.name))).sort((p,q)=>nz(q.name).length-nz(p.name).length)[0]||L.filter(j=>nz(j.name).includes(n)).sort((p,q)=>nz(p.name).length-nz(q.name).length)[0]}
+function applyD(){if(!D||!auto||applied===D.generated_at)return;
+ attractions.forEach(a=>{const j=findJ(a);if(!j)return;a.avg=j.avg;a.dpaSale=j.dpa;a.pa=!!j.pa;if(a.closed)return;
+  if(j.status==="stop")a.status="一時休止";else if(j.status==="open"){if(a.status==="一時休止")a.status="運営中";if(j.wait!==null)a.wait=j.wait}});
+ applied=D.generated_at;persist()}
+async function loadJSON(){dataMsg="確認中…";renderData();
+ try{const r=await fetch("wait-times.json?t="+Date.now(),{cache:"no-store"});if(!r.ok)throw new Error("HTTP "+r.status);const j=await r.json();
+  if(!okD(j))throw new Error("JSONの形式が異常なため読み込みを拒否");
+  if(D&&Date.parse(j.generated_at)<Date.parse(D.generated_at))throw new Error("古いデータのため無視");
+  D=j;try{localStorage.setItem("dsea1d",JSON.stringify(j))}catch(e){}applyD();dataMsg="読み込み成功 "+fmtT(j.generated_at)}
+ catch(e){dataMsg="自動データ読込に失敗: "+e.message+"（前回データと手入力を維持）"}
+ renderAll()}
+function setAuto(v){auto=v;applied=null;applyD();persist();renderAll()}
+function setRealClock(v){realClock=v;dpaClockBase=Date.now();persist();renderAll()}
+function renderData(){const g=age();
+ if($("dataInfo"))$("dataInfo").innerHTML=(D?`取得 ${fmtT(D.generated_at)}（${g}分前）・${D.attractions.length}施設`+(g>30?" ⚠古い可能性。手入力で補正":""):"自動データ未取得（手入力で使えます）")+(dataMsg?"<br>"+esc(dataMsg):"");
+ $("dataBadge").textContent=D?(g>30?"古い":"自動"):"手動";
+ $("dataNote").innerHTML=D?(g>30?`⚠ 自動データが${g}分前のものです。現地の表示と見比べてください。`:`待ち時間: 自動データ(${fmtT(D.generated_at)})＋手入力。移動時間は推定値です。`):"自動データ未取得。待ち時間は「現地入力」で手入力できます。"}
+const dpaBadge=a=>(a.hasDpa?`<span class="badge dpa">DPA${a.dpaSale==="on_sale"?" 販売中":a.dpaSale==="sale_none"?" 販売なし":""}</span>`:"")+(a.pa?' <span class="badge closed">PA限定</span>':"");
+/* 現在時刻: 実時間(既定) or 手動時刻 */
+function currentMinutes(){if(realClock){const d=new Date();return d.getHours()*60+d.getMinutes()}const p=currentTime.split(":").map(Number);return p[0]*60+p[1]+Math.floor((Date.now()-dpaClockBase)/60000)}
+/* DPA: 次回購入目安=min(最後の購入+間隔, その枠の利用開始)。アトラクション枠とショー枠は別管理。公式条件は要確認 */
+function nextBuy(show){const b=dpaItems.filter(d=>!!d.show===show&&d.status==="購入済み"&&d.purchaseTime);if(!b.length)return null;
+ const l=b.slice().sort((x,y)=>tmm(y.purchaseTime)-tmm(x.purchaseTime))[0],c=[tmm(l.purchaseTime)+dpaInterval];if(l.slot)c.push(tmm(l.slot));return{d:l,t:Math.min(...c)}}
+function dpaCand(){const W={S:3,A:2,B:1};return dpaItems.filter(d=>!d.show&&d.pref!=="X"&&d.status!=="購入済み"&&d.status!=="購入できず").map(d=>{const a=attractions.find(x=>x.id===d.id)||{},sold=a.dpaSale==="sale_none";return{d,sold,s:(W[d.pref]||1)*1000+(a.wait||0)-(sold?5000:0)}}).sort((x,y)=>y.s-x.s)}
+function renderDpaCountdown(){const now=currentMinutes(),n=nextBuy(false),ns=nextBuy(true),c=dpaCand(),top=c.find(x=>!x.sold)||c[0];
+ $("dpaCountdown").textContent=n?fmtCountdown(n.t-now):"購入履歴なし";$("dpaNextTarget").textContent=top?top.d.name:"候補なし";
+ $("dpaCountdownNote").textContent=(n?`直近の購入：${n.d.name}（${n.d.purchaseTime}）→ 次回目安 ${hmm(n.t)}（購入+${dpaInterval}分と利用開始の早い方）。`:"購入履歴がないため、すぐ購入できる想定です。")+(top&&top.sold?" ※候補は現在「販売なし」表示。":"")+(ns?` ショーDPAは別枠：次回目安 ${hmm(ns.t)}。`:"")+" 実際の条件は公式で確認。"}
+/* おすすめ: 希望度−待ち時間/2−移動分。DPA枠内=最優先、枠開始が近い=次点、枠が先なら通常候補から除外 */
+function evalA(a){if(a.closed||a.status!=="運営中"||a.pref==="X"||a.done)return null;const now=currentMinutes(),w=wk(currentArea,a.area),why=[];
+ let s=({S:100,A:65,B:25})[a.pref]-Math.min(a.wait,180)*.5-w;
+ const d=dpaItems.find(x=>x.id===a.id&&x.status==="購入済み"&&x.slot),sl=d?tmm(d.slot):null;
+ if(sl!==null){if(now>=sl&&now<=sl+60)return{s:2000,why:["DPA枠の利用時間内"]};if(sl>now){if(sl-now<=w+15)return{s:1500,why:["DPA開始 "+hmm(sl)+"（移動約"+w+"分）"]};return null}}
+ why.push(a.wait+"分待ち",w?"移動約"+w+"分":"同エリア");if(a.pref==="S")why.push("絶対行く");
+ if(a.avg&&a.pref!=="S"){const p=now<630?0:now<1110?1:2,lt=Math.min(...a.avg.slice(p+1).filter(v=>v!==null),999);if(a.avg[p]!==null&&lt<a.avg[p]){s-=(a.avg[p]-lt)*.5;why.push("夜に空く傾向→後回し")}}
+ return{s,why}}
+function renderReco(){const top=attractions.map(a=>({a,e:evalA(a)})).filter(x=>x.e).sort((p,q)=>q.e.s-p.e.s).slice(0,3);
+ $("reco").innerHTML=top.map(({a,e},i)=>`<div class="reco"><div class="itemtop"><span class="badge" style="background:var(--n);color:white">候補 ${i+1}</span><span class="wait ${waitClass(a)}">${a.wait}分</span></div><div class="itemname" style="margin-top:7px">${a.name}</div><div class="itemmeta">${a.area} · <span class="badge ${prefClass(a.pref)}">${a.pref} ${prefText(a.pref)}</span> ${dpaBadge(a)}</div><div class="reason">${e.why.join(" ／ ")}</div><div class="toolbar"><button class="primary small" onclick="completeRide('${a.id}')">乗り終わった</button><button class="secondary small" onclick="planRide('${a.id}')">予定に追加</button></div></div>`).join("")||'<div class="card muted">現在おすすめできる候補はありません。</div>'}
+/* 保存: 画面状態のみidで保存し、コード側の施設定義へ上書きマージ(定義変更が反映される)。v2データは移行 */
+const pick=(o,ks)=>{const r={};if(o)ks.forEach(k=>{if(o[k]!==undefined)r[k]=o[k]});return r};
+function persist(){try{localStorage.setItem(KEY,JSON.stringify({at:Object.fromEntries(attractions.map(a=>[a.id,pick(a,["pref","done","status","wait"])])),dpa:Object.fromEntries(dpaItems.map(d=>[d.id,pick(d,["pref","status","purchaseTime","slot"])])),restaurants,breaks,events,currentArea,currentTime,dpaInterval,realClock,auto,applied}))}catch(e){}}
+function loadSaved(){try{let d=JSON.parse(localStorage.getItem(KEY));
+ if(!d){const o=JSON.parse(localStorage.getItem("tdsnav-v2"));if(!o)return;const m=l=>Object.fromEntries((l||[]).map(x=>[x.id,x]));d={at:m(o.attractions),dpa:m(o.dpaItems),restaurants:o.restaurants,breaks:o.breaks,events:o.events,currentArea:o.currentArea,currentTime:o.currentTime,dpaInterval:o.dpaInterval}}
+ attractions.forEach(a=>Object.assign(a,pick(d.at&&d.at[a.id],["pref","done","status","wait"])));
+ dpaItems.forEach(x=>Object.assign(x,pick(d.dpa&&d.dpa[x.id],["pref","status","purchaseTime","slot"])));
+ if(d.restaurants)restaurants.splice(0,restaurants.length,...d.restaurants);if(d.breaks)breaks.splice(0,breaks.length,...d.breaks);if(d.events)events.splice(0,events.length,...d.events.filter(e=>e.time||e.kind));
+ if(d.currentArea)currentArea=d.currentArea;if(d.currentTime)currentTime=d.currentTime;if(d.dpaInterval)dpaInterval=d.dpaInterval;
+ if(d.realClock!==undefined)realClock=d.realClock;if(d.auto!==undefined)auto=d.auto;applied=d.applied||null}catch(e){}}
+function tab(id){document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===id));document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.id===id));renderAll()}
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>tab(b.dataset.tab));
+function areaOptions(selected){return areas.map(a=>`<option ${a===selected?"selected":""}>${a}</option>`).join("")}
+function fillSelects(){["areaSelect","breakArea"].forEach(id=>$(id).innerHTML=areaOptions(areas[0]));$("breakTime").innerHTML=hourOptions()}
+function prefText(p){return {S:"絶対に乗りたい",A:"できれば乗りたい",B:"どちらでも",X:"今回は乗らない"}[p]}
+function prefClass(p){return "p"+p}
+function prefControls(id,p,fn){return `<div class="prefbuttons">${["S","A","B","X"].map(v=>`<button class="${p===v?"sel":""}" onclick="${fn}('${id}','${v}')">${v}</button>`).join("")}</div>`}
+function setPref(id,p){attractions.find(a=>a.id===id).pref=p;persist();renderAttractions();renderToday();renderReco()}
+function renderAttractions(){
+ let list=attractions.filter(a=>($("showClosed").checked||!a.closed)&&(!$("showOnlyDpa").checked||a.hasDpa));
+ $("attractionCount").textContent=`${list.length}施設`;
+ $("attractionList").innerHTML=list.map(a=>`<div class="item attraction ${a.closed?"closedrow":""}"><div class="itemtop"><div style="min-width:0"><div class="itemname">${a.name} ${a.hasDpa?'<span class="badge dpa">DPA</span>':""} ${a.closed?'<span class="badge closed">11/7休止</span>':""}</div><div class="itemmeta">${a.area}</div></div>${prefControls(a.id,a.pref,"setPref")}</div></div>`).join("");
+}
+function addRestaurant(){restaurants.push({name:"",area:areas[0],time:"12:00",priority:restaurants.length+1});renderRestaurants()}
+function renderRestaurants(){$("restaurantList").innerHTML=restaurants.map((r,i)=>`<div class="restaurant-row"><div class="ranklabel">${i+1}</div><div><div class="grid2"><div class="field"><label>レストラン名</label><input value="${esc(r.name)}" onchange="restaurants[${i}].name=this.value"></div><div class="field"><label>エリア</label><select onchange="restaurants[${i}].area=this.value">${areaOptions(r.area)}</select></div><div class="field"><label>希望時間</label><select onchange="restaurants[${i}].time=this.value">${hourOptions().replace(`value="${r.time}"`,`value="${r.time}" selected`)}</select></div><div class="field" style="align-content:end"><button class="secondary small" onclick="restaurants.splice(${i},1);renderRestaurants();renderTimeline();persist()">この候補を削除</button></div></div><div class="checkrow"><label><input type="checkbox" ${r.planned?"checked":""} onchange="restaurants[${i}].planned=this.checked;renderTimeline();persist()">予定表に仮予定として追加</label><span class="badge tagmeal">食事候補</span></div></div></div>`).join("")}
+function addBreak(){let meal=$("typeMeal").checked,rest=$("typeRest").checked;if(!meal&&!rest){alert("「食事」か「休憩」を選択してください");return}let name=$("breakName").value.trim()||(meal&&rest?"食事・休憩":meal?"食事":"休憩");breaks.push({name,area:$("breakArea").value,time:$("breakTime").value,duration:$("breakDuration").value,meal,rest});persist();$("breakName").value="";renderBreaks();renderTimeline()}
+function renderBreaks(){$("breakList").innerHTML=breaks.map((b,i)=>`<div class="item"><div class="itemtop"><div><div class="itemname">${b.name}</div><div class="itemmeta">${b.area} · ${b.time} · ${b.duration}分</div></div><div>${b.meal?'<span class="badge tagmeal">食事</span>':""} ${b.rest?'<span class="badge tagrest">休憩</span>':""} <button class="secondary small" onclick="breaks.splice(${i},1);renderBreaks();renderTimeline()">削除</button></div></div></div>`).join("")}
+function setDpaPref(id,p){dpaItems.find(x=>x.id===id).pref=p;persist();renderDpa()}
+function setDpaStatus(id,v){let d=dpaItems.find(x=>x.id===id);d.status=v;if(v!=="購入済み"){d.purchaseTime="";d.slot=""}persist();renderDpa();renderTimeline();renderDpaCountdown()}
+function updateDpaField(id,key,value){let d=dpaItems.find(x=>x.id===id);d[key]=value;persist();renderTimeline();renderDpaCountdown()}
+let dpaInterval=60;
+let dpaClockBase=Date.now();
+function setDpaClock(value){currentTime=value||currentTime;dpaClockBase=Date.now();persist();renderDpaCountdown()}
+function saveDpaInterval(){dpaInterval=Number($("dpaInterval").value)||60;persist();renderDpaCountdown()}
+function fmtCountdown(mins){
+ if(mins<=0)return "購入タイミング";
+ const h=Math.floor(mins/60),m=mins%60;
+ return h>0?`${h}時間${String(m).padStart(2,"0")}分`:`${m}分`;
+}
+function renderDpa(){$("dpaList").innerHTML=dpaItems.map(d=>`<div class="dpa-row"><div><div class="itemname">${d.name}</div><div class="itemmeta">${d.show?"ショー・エンターテイメント":"アトラクション"} · ¥${d.price.toLocaleString()} / 人</div><div style="margin-top:7px">${prefControls(d.id,d.pref,"setDpaPref")}</div></div><div class="stack" style="gap:5px"><select onchange="setDpaStatus('${d.id}',this.value)"><option ${d.status==="未定"?"selected":""}>未定</option><option ${d.status==="購入予定"?"selected":""}>購入予定</option><option ${d.status==="購入済み"?"selected":""}>購入済み</option><option ${d.status==="購入できず"?"selected":""}>購入できず</option></select>${d.status==="購入済み"?`<input type="time" aria-label="購入時刻" value="${d.purchaseTime}" onchange="updateDpaField('${d.id}','purchaseTime',this.value)" title="購入時刻"><input type="time" aria-label="利用時間" value="${d.slot}" onchange="updateDpaField('${d.id}','slot',this.value)" title="利用時間">`:""}</div></div>`).join("")}
+function doneIds(){return events.filter(e=>e.kind==="ride"&&e.done).map(e=>e.id)}
+function completeRide(id){let a=attractions.find(x=>x.id===id);a.done=true;events.push({time:currentTime,name:a.name,kind:"ride",id,done:true});currentArea=a.area;$("areaSelect").value=currentArea;persist();renderAll()}
+function planRide(id){let a=attractions.find(x=>x.id===id);events.push({time:currentTime,name:a.name,kind:"ride",id,done:false});renderTimeline();tab("plan")}
+function waitClass(a){if(a.closed||a.status!=="運営中"||a.done||a.pref==="X")return "wait-closed";if(a.wait<=20)return "wait-low";if(a.wait<=40)return "wait-mid";if(a.wait<=60)return "wait-high";return "wait-veryhigh"}
+function renderToday(){
+ const order={S:0,A:1,B:2,X:3};
+ const list=[...attractions].sort((a,b)=>order[a.pref]-order[b.pref]||a.name.localeCompare(b.name,"ja"));
+ $("todayList").innerHTML=list.map(a=>`<div class="item ${a.closed||a.done||a.pref==="X"||a.status!=="運営中"?"today-row-muted":""}"><div class="itemtop"><div style="min-width:0"><div class="itemname">${a.name} <span class="badge ${prefClass(a.pref)}">${a.pref}</span> ${dpaBadge(a)} ${a.closed?'<span class="badge closed">休止</span>':""} ${a.done?'<span class="badge done">完了</span>':""} ${a.status!=="運営中"&&!a.closed?'<span class="badge closed">'+a.status+'</span>':""}</div><div class="itemmeta">${a.area}</div></div><div class="wait ${waitClass(a)}">${a.closed||a.status!=="運営中"?"—":a.wait+"分"}</div></div></div>`).join("");
+}
+function renderWaitInputs(){$("waitInputs").innerHTML=attractions.filter(a=>!a.closed).map(a=>`<div class="item"><div class="itemtop"><div style="min-width:0"><div class="itemname">${a.name}</div><div class="itemmeta">${a.area}</div></div><div style="width:128px;display:grid;gap:5px"><input id="w-${a.id}" type="number" min="0" max="300" value="${a.wait}" aria-label="待ち時間"><select id="s-${a.id}"><option>運営中</option><option>一時休止</option><option>終日休止</option></select></div></div></div>`).join("")}
+function saveWaits(){attractions.filter(a=>!a.closed).forEach(a=>{let n=Number($("w-"+a.id).value);if(n>=0)a.wait=n;a.status=$("s-"+a.id).value});persist();renderAll();alert("状況を反映しました")}
+function updateLocation(){currentArea=$("areaSelect").value;currentTime=$("timeInput").value||currentTime;dpaClockBase=Date.now();$("dpaCurrentTime").value=currentTime;persist();renderAll();tab("today")}
+function renderTimeline(){
+ let list=[...events.filter(e=>e.time),...breaks.map((b,i)=>({time:b.time,name:b.name,kind:"break",tags:[b.meal?"食事":null,b.rest?"休憩":null].filter(Boolean),area:b.area,duration:b.duration})),...restaurants.filter(r=>r.name&&r.planned).map(r=>({time:r.time,name:r.name,kind:"restaurant",tags:["食事"],area:r.area,priority:r.priority})),...dpaItems.filter(d=>d.status==="購入済み"&&d.slot).map(d=>({time:d.slot,name:d.name,kind:"dpa",tags:["DPA確定"],done:false}))].sort((a,b)=>a.time.localeCompare(b.time));
+ $("timeline").innerHTML=list.map(e=>`<div class="event ${e.done?"completed":""}"><strong>${e.time}　${e.name}</strong><small>${e.kind==="dpa"?'<span class="badge dpa">DPA確定</span>':e.tags?e.tags.map(t=>`<span class="badge ${t==="食事"?"tagmeal":t==="休憩"?"tagrest":"dpa"}">${t}</span>`).join(" "):e.kind==="ride"?"アトラクション":""} ${e.area?"· "+e.area:""} ${e.duration?"· "+e.duration+"分":""} ${e.done?"· 完了":""}</small></div>`).join("")||'<div class="muted">予定はまだありません。</div>';
+}
+function saveAll(){persist();$("saved").textContent="このブラウザに保存しました。";renderAll()}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function renderAll(){ $("currentArea").textContent=currentArea;$("clock").textContent=hmm(currentMinutes());$("doneCount").textContent=attractions.filter(a=>a.done).length+" / "+attractions.length;renderReco();renderToday();renderTimeline();renderAttractions();renderRestaurants();renderBreaks();renderDpa();renderWaitInputs();renderDpaCountdown();renderData()}
+fillSelects();loadSaved();$("areaSelect").value=currentArea;$("timeInput").value=currentTime;$("dpaInterval").value=String(dpaInterval);$("dpaCurrentTime").value=currentTime;$("realClock").checked=realClock;$("autoApply").checked=auto;dpaClockBase=Date.now();applyD();renderAll();loadJSON();
+setInterval(()=>{$("clock").textContent=hmm(currentMinutes());renderReco();renderDpaCountdown()},60000);
+setInterval(()=>{if(!document.hidden&&location.protocol!=="file:")loadJSON()},180000);
+document.addEventListener("change",()=>persist());
 </script></body></html>
