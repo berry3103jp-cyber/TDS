@@ -113,7 +113,7 @@ footer{text-align:center;padding:14px;color:#8b949d;font-size:10px}
 
 <section id="status" class="view">
 <div class="head"><div><h2>現地状況の入力</h2><div class="desc">自動データの確認と、手動での補正</div></div></div>
-<div class="card"><h3>待ち時間データ（自動）</h3><div id="dataInfo" class="muted"></div><div class="checkrow"><label><input type="checkbox" id="autoApply" checked onchange="setAuto(this.checked)">自動データを待ち時間に反映</label></div><div class="toolbar"><button class="primary small" onclick="loadJSON()">今すぐ確認</button><a href="https://disneyreal.asumirai.info/realtime/disneysea-wait-today.html" target="_blank" rel="noopener"><button class="secondary small">元サイトを開く</button></a></div></div>
+<div class="card"><h3>待ち時間データ（自動）</h3><div id="dataInfo" class="muted"></div><details style="margin:8px 0"><summary>元サイトからコピーして取り込む（主要アトラクションの待ち時間）</summary><div class="muted" style="margin:6px 0">元サイトを開き、一覧をコピーして貼り付け → 「読み取る」で内容を確認 → 反映</div><textarea id="pasteBox" rows="4" style="width:100%;font:16px -apple-system,sans-serif;padding:8px;border:1px solid var(--line,#d9e0e7);border-radius:8px"></textarea><div class="toolbar"><button class="primary small" onclick="pasteParse()">読み取る</button></div><div id="pastePreview" class="muted"></div></details><div class="checkrow"><label><input type="checkbox" id="autoApply" checked onchange="setAuto(this.checked)">自動データを待ち時間に反映</label></div><div class="toolbar"><button class="primary small" onclick="loadJSON()">今すぐ確認</button><a href="https://disneyreal.asumirai.info/realtime/disneysea-wait-today.html" target="_blank" rel="noopener"><button class="secondary small">元サイトを開く</button></a></div></div>
 <div class="card"><h3>現在地・時刻</h3><div class="checkrow"><label><input type="checkbox" id="realClock" checked onchange="setRealClock(this.checked)">実際の時刻で進める（オフ=手動時刻）</label></div><div class="field"><label>現在地</label><select id="areaSelect"></select></div><div class="field"><label>現在時刻</label><input id="timeInput" type="time" value="10:30"></div><button class="primary" style="width:100%" onclick="updateLocation()">反映する</button></div>
 <div class="card"><h3>待ち時間・運営状況</h3><div id="waitInputs"></div><button class="primary" style="width:100%;margin-top:10px" onclick="saveWaits()">状況を保存</button></div>
 </section>
@@ -211,7 +211,7 @@ function setRealClock(v){realClock=v;dpaClockBase=Date.now();persist();renderAll
 function renderData(){const g=age();
  if($("dataInfo"))$("dataInfo").innerHTML=(D?`取得 ${fmtT(D.generated_at)}（${g}分前）・${D.attractions.length}施設`+(g>30?" ⚠古い可能性。手入力で補正":""):"自動データ未取得（手入力で使えます）")+(dataMsg?"<br>"+esc(dataMsg):"");
  $("dataBadge").textContent=D?(g>30?"古い":"自動"):"手動";
- $("dataNote").innerHTML=D?(g>30?`⚠ 自動データが${g}分前のものです。現地の表示と見比べてください。`:`待ち時間: 自動データ(${fmtT(D.generated_at)})＋手入力。移動時間は推定値です。`):"自動データ未取得。待ち時間は「現地入力」で手入力できます。"}
+ $("dataNote").innerHTML=D?(g>30?`⚠ 自動データが${g}分前のものです。現地の表示と見比べてください。`:`待ち時間: 自動データ(${fmtT(D.generated_at)})。運営状況・DPA状況・平均は自動、主要アトラクションの待ち時間は手入力か貼り付け取込で補います。`):"自動データ未取得。待ち時間は「現地入力」で手入力できます。"}
 const dpaBadge=a=>(a.hasDpa?`<span class="badge dpa">DPA${a.dpaSale==="on_sale"?" 販売中":a.dpaSale==="sale_none"?" 販売なし":""}</span>`:"")+(a.pa?' <span class="badge closed">PA限定</span>':"");
 /* 現在時刻: 実時間(既定) or 手動時刻 */
 function currentMinutes(){if(realClock){const d=new Date();return d.getHours()*60+d.getMinutes()}const p=currentTime.split(":").map(Number);return p[0]*60+p[1]+Math.floor((Date.now()-dpaClockBase)/60000)}
@@ -281,6 +281,18 @@ function evalA(a){if(a.closed||a.status!=="運営中"||a.pref==="X"||a.done)retu
  return{s,why}}
 function renderReco(){const top=attractions.map(a=>({a,e:evalA(a)})).filter(x=>x.e).sort((p,q)=>q.e.s-p.e.s).slice(0,3);
  $("reco").innerHTML=top.map(({a,e},i)=>`<div class="reco" ${i?'style="padding:9px"':'style="border-width:2px;border-color:var(--g)"'}><div class="itemtop"><span class="badge" style="background:var(--n);color:white">${i?"次点 "+i:"いちばんのおすすめ"}</span><span class="wait ${waitClass(a)}">${a.wait}分</span></div><div class="itemname" style="margin-top:7px;${i?"":"font-size:18px"}">${a.name}</div><div class="itemmeta">${a.area} · <span class="badge ${prefClass(a.pref)}">${a.pref}</span> ${dpaBadge(a)}</div><ul class="reason" style="margin:6px 0 0;padding-left:16px">${e.why.map(x=>"<li>"+x+"</li>").join("")}</ul><div class="toolbar"><button class="primary small" onclick="completeRide('${a.id}')">乗り終わった</button><button class="secondary small" onclick="passRide('${a.id}')">今はパス</button><button class="secondary small" onclick="planRide('${a.id}')">予定に追加</button></div></div>`).join("")||'<div class="card muted">現在おすすめできる候補はありません。</div>'}
+/* 貼り付け取込: 元サイトを自分で開いてコピーした文章から待ち時間・運営状況・DPA状況を読み取る。
+   主要アトラクションの待ち時間は元サイト側でJS表示されるため自動取得しない。コピー形式は未検証→反映前にプレビュー確認 */
+let pasteRes=[];
+const sepRe=n=>n.split("").filter(c=>!/[\s・：:！!＆&（）()]/.test(c)).map(c=>c.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).join("[\\s・：:！!＆&]*");
+function pasteParse(){const t=$("pasteBox").value,hit=[];
+ attractions.forEach(a=>{for(const k of [a.name,a.name.split(/[：:（(]/)[0]]){const m=new RegExp(sepRe(k)).exec(t);if(m){hit.push({a,i:m.index});break}}});
+ hit.sort((x,y)=>x.i-y.i);pasteRes=[];
+ hit.forEach((h,j)=>{const seg=t.slice(h.i,Math.min(j+1<hit.length?hit[j+1].i:t.length,h.i+140)).replace(/\d{1,2}:\d{2}\s*[-〜~－]\s*\d{1,2}:\d{2}/g,"");
+  const w=/(\d+)\s*分/.exec(seg),stop=!w&&/終日運営|公演中止|運営中止|休止|準備中/.test(seg),dp=/販売なし/.test(seg)?"sale_none":/販売中/.test(seg)?"on_sale":null;
+  if(!h.a.closed)pasteRes.push({a:h.a,wait:stop?null:(w?+w[1]:null),stop,dpa:dp})});
+ $("pastePreview").innerHTML=pasteRes.length?pasteRes.map(r=>`${esc(r.a.name)}：${r.stop?"休止":r.wait===null?"待ち不明":r.wait+"分"}${r.dpa?" / DPA"+(r.dpa==="on_sale"?"販売中":"販売なし"):""}`).join("<br>")+'<div class="toolbar"><button class="primary small" onclick="pasteApply()">この内容を反映</button></div>':"施設名が見つかりませんでした。コピー範囲を確認してください。"}
+function pasteApply(){pasteRes.forEach(r=>{const a=r.a;if(r.stop)a.status="一時休止";else{if(a.status==="一時休止")a.status="運営中";if(r.wait!==null)a.wait=r.wait}if(r.dpa)a.dpaSale=r.dpa});pasteRes=[];$("pasteBox").value="";$("pastePreview").innerHTML="";dataMsg="貼り付けを反映しました "+hmm(currentMinutes());persist();renderAll()}
 function tab(id){document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===id));document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.id===id));renderAll()}
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>tab(b.dataset.tab));
 function areaOptions(selected){return areas.map(a=>`<option ${a===selected?"selected":""}>${a}</option>`).join("")}
