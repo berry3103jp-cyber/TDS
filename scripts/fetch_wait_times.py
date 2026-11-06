@@ -37,15 +37,15 @@ def parse(html):
         tx=' '.join(' '.join(i['t']).split())
         if i['slug'] in stop: st='stop'
         elif '閉園中' in tx: st='closed'
-        elif re.search(r'休止|中止',tx): st='stop'
+        elif re.search(r'休止|中止|準備中',tx): st='stop'
         else: st='open'
         tx2=re.sub(r'\d{1,2}:\d{2}\s*[-〜~]\s*\d{1,2}:\d{2}','',tx)  # 営業時間(9:00-21:00)を待ち時間と誤読しない
         m=re.search(r'(\d+)\s*分',tx2); wait=int(m.group(1)) if (m and st=='open') else None
-        q=re.search(r'分\s+(\d+)\s*%',tx2); pct=int(q.group(1)) if q else None  # 意味は未確認(待ち時間かは不明)
+        q=re.search(r'分\s+(\d+)\s*%',tx2); pct=int(q.group(1)) if q else None  # 「分」の次の%は待ち時間ではなく増減率(trend)
         v=re.search(r'(\d+|-)\s+(\d+|-)\s+(\d+|-)\s*$',tx)
         avg=[None if x=='-' else int(x) for x in v.groups()] if v else None
         dpa=('sale_none' if '販売なし' in tx else 'on_sale' if '販売中' in tx else 'other') if 'DPA' in tx else None
-        out[i['slug']]={'slug':i['slug'],'name':i['title'][:-len('の待ち時間')],'area':i['area'],'status':st,'wait':wait,'avg':avg,'dpa':dpa,'pct':pct,'pa':'プライオリティ・アクセス' in tx,'raw':tx[:200],'_h':''.join(i['h'])[:700]}
+        out[i['slug']]={'slug':i['slug'],'name':i['title'][:-len('の待ち時間')],'area':i['area'],'status':st,'wait':wait,'avg':avg,'dpa':dpa,'trend':pct,'pa':'プライオリティ・アクセス' in tx,'raw':tx[:200]}
     return list(out.values())
 
 def get(url):
@@ -61,13 +61,9 @@ def main():
         os.makedirs('debug',exist_ok=True); open('debug/page.html','w').write(html)
         if rp.can_fetch(UA,REST): open('debug/restaurant.html','w').write(get(REST))
     if len(items)<10: print('取得件数不足(%d件)。構造が想定と違う可能性。既存JSONは変更しません'%len(items)); return 1
-    diag={'card_html':[i.pop('_h') for i in items[:2]]}  # 診断用(構造確認後に削除)
-    for i in items[2:]: i.pop('_h',None)
-    diag['scripts']=re.findall(r'<script[^>]*\ssrc="([^"]+)"',html)[:15]
-    diag['inline_hits']=[l.strip()[:200] for b in re.findall(r'<script(?![^>]*\ssrc)[^>]*>(.*?)</script>',html,re.S) for l in b.splitlines() if re.search(r'wait|json|fetch|ajax|api|xhr|\.php',l,re.I)][:40]
     closed=sum(1 for i in items if i['status']=='closed')
     j={'schema':1,'generated_at':datetime.datetime.now(JST).isoformat(timespec='seconds'),'source':PAGE,
-       'park_status':'closed' if closed>len(items)/2 else 'open','attractions':items,'restaurants':[],'diag':diag}
+       'park_status':'closed' if closed>len(items)/2 else 'open','attractions':items,'restaurants':[]}
     json.dump(j,open(OUT+'.tmp','w'),ensure_ascii=False,indent=1); os.replace(OUT+'.tmp',OUT)
     print('OK',len(items),'件',j['park_status']); return 0
 if __name__=='__main__': sys.exit(main())
