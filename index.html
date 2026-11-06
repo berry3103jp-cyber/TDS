@@ -52,15 +52,12 @@ footer{text-align:center;padding:14px;color:#8b949d;font-size:10px}
 <header><div class="brand"><div><h1>TDS NAVIGATOR</h1><small>PERSONAL PARK STRATEGY</small></div><span class="datepill">2026.11.07</span></div></header>
 <main>
 <nav class="tabs">
-<button class="tab active" data-tab="today">今日</button><button class="tab" data-tab="setup">事前設定</button><button class="tab" data-tab="dpa">DPA管理</button><button class="tab" data-tab="plan">予定表</button><button class="tab" data-tab="status">現地入力</button>
+<button class="tab active" data-tab="today">ホーム</button><button class="tab" data-tab="setup">事前設定</button><button class="tab" data-tab="dpa">DPA管理</button><button class="tab" data-tab="plan">予定表</button><button class="tab" data-tab="status">現地入力</button>
 </nav>
 
 <section id="today" class="view active">
-<div class="head"><div><h2>今日のパーク攻略</h2><div class="desc">希望・待ち時間・現在地から次の行動を選ぶ</div></div><span class="badge done" id="dataBadge">手動</span></div>
-<div class="card dark"><div class="row between"><div><small style="color:#cbd8e5">現在地</small><div id="currentArea" style="font-weight:800;margin-top:3px">メディテレーニアンハーバー</div></div><button class="ghost small" onclick="tab('status')">変更</button></div>
-<div class="grid2" style="margin-top:12px"><div class="kpi"><small>現在時刻</small><strong id="clock">10:30</strong></div><div class="kpi"><small>アトラクション完了</small><strong id="doneCount">0</strong></div></div></div>
-<div class="head"><div><h2>次のおすすめ</h2><div class="desc">除外・休止・完了を除いて候補を表示</div></div><button class="secondary small" onclick="renderReco()">再計算</button></div>
-<div id="reco"></div>
+<div class="head"><div><h2>ホーム</h2><div class="desc">希望・待ち時間・現在地から次の行動を選ぶ</div></div><span class="badge done" id="dataBadge">手動</span></div>
+<div class="card dark" style="padding:10px 14px"><div class="row between"><div><small style="color:#cbd8e5">現在地</small><div id="currentArea" style="font-weight:800;margin-top:2px">メディテレーニアンハーバー</div></div><div><small style="color:#cbd8e5">現在時刻</small><div id="clock" style="font-weight:800;font-size:20px">10:30</div></div><button class="ghost small" onclick="tab('status')">変更</button></div></div>
 <div class="card" id="dpaCountdownCard">
  <div class="row between"><h3 style="margin:0">次のDPA購入タイミング</h3><span class="badge dpa">DPA</span></div>
  <div class="grid2" style="margin-top:8px">
@@ -70,6 +67,9 @@ footer{text-align:center;padding:14px;color:#8b949d;font-size:10px}
  <div id="dpaCountdownNote" class="muted" style="margin-top:7px">購入履歴と希望度から目安を表示します。</div>
  <button class="secondary small" style="margin-top:8px" onclick="tab('dpa')">DPA購入状況を確認</button>
 </div>
+<div class="head"><div><h2>次のおすすめ</h2></div></div>
+<div id="reco"></div>
+<div class="muted" style="margin:-4px 0 12px">候補以外に行ったときは、下の一覧の「完了」で現在地が更新され、候補が組み直されます。</div>
 <div class="card"><div class="row between"><h3 style="margin:0">希望アトラクションの状況</h3><button class="secondary small" onclick="tab('setup')">希望度を編集</button></div>
  <div class="legend"><span><b class="legend-chip pS">S</b> 絶対行く</span><span><b class="legend-chip pA">A</b> できれば行きたい</span><span><b class="legend-chip pB">B</b> どっちでも</span><span><b class="legend-chip pX">X</b> 行かない</span></div>
  <div class="legend wait-legend"><span><i class="dot low"></i> 0–20分</span><span><i class="dot mid"></i> 21–40分</span><span><i class="dot high"></i> 41–60分</span><span><i class="dot veryhigh"></i> 61分以上</span></div>
@@ -105,9 +105,10 @@ footer{text-align:center;padding:14px;color:#8b949d;font-size:10px}
 </section>
 
 <section id="plan" class="view">
-<div class="head"><div><h2>今日の予定表</h2><div class="desc">購入済みDPAは利用時間を確定予定として反映</div></div><button class="secondary small" onclick="tab('setup')">予定を追加</button></div>
+<div class="head"><div><h2>予定表</h2><div class="desc">当日いつでも編集できます</div></div><button class="primary small" onclick="addNew()">＋追加</button></div>
 <div class="card"><div class="row between"><h3 style="margin:0">タイムライン</h3><span class="muted">時刻順</span></div><div id="timeline" class="timeline"></div></div>
-<div class="card"><h3>予定表のタグ</h3><div class="checkrow"><span class="badge dpa">DPA確定</span><span class="badge tagmeal">食事</span><span class="badge tagrest">休憩</span><span class="badge done">完了</span></div><p class="muted">DPA購入済みの場合は「利用時間」を予定表に反映。購入予定・購入不可は確定予定にはしません。</p></div>
+<div class="card"><h3>時間未定（やりたいこと）</h3><div id="timelineFlex" class="timeline"></div></div>
+<div class="muted">DPA確定はDPA管理で編集します。予定の時間帯はホームのおすすめに影響しますが、固定ではありません。</div>
 </section>
 
 <section id="status" class="view">
@@ -164,7 +165,7 @@ const dpaItems=[
 {id:"journey",name:"センター・オブ・ジ・アース",price:2000,pref:"B"},
 {id:"raging",name:"レイジングスピリッツ",price:1500,pref:"B"},
 {id:"believe",name:"ビリーヴ！～シー・オブ・ドリームス～",price:2500,pref:"B",show:true}
-].map(x=>({...x,status:"未定",purchaseTime:"",slot:""}));
+].map(x=>({...x,status:"未定",purchaseTime:"",slot:"",slotEnd:""}));
 let restaurants=[
 {name:"マゼランズ",area:"メディテレーニアンハーバー",time:"12:00",priority:1,planned:false},
 {name:"リストランテ・ディ・カナレット",area:"メディテレーニアンハーバー",time:"13:00",priority:2,planned:false}
@@ -222,25 +223,64 @@ function renderDpaCountdown(){const now=currentMinutes(),n=nextBuy(false),ns=nex
  $("dpaCountdown").textContent=n?fmtCountdown(n.t-now):"購入履歴なし";$("dpaNextTarget").textContent=top?top.d.name:"候補なし";
  $("dpaCountdownNote").textContent=(n?`直近の購入：${n.d.name}（${n.d.purchaseTime}）→ 次回目安 ${hmm(n.t)}（購入+${dpaInterval}分と利用開始の早い方）。`:"購入履歴がないため、すぐ購入できる想定です。")+(top&&top.sold?" ※候補は現在「販売なし」表示。":"")+(ns?` ショーDPAは別枠：次回目安 ${hmm(ns.t)}。`:"")+" 実際の条件は公式で確認。"}
 /* おすすめ: 希望度−待ち時間/2−移動分。DPA枠内=最優先、枠開始が近い=次点、枠が先なら通常候補から除外 */
-function evalA(a){if(a.closed||a.status!=="運営中"||a.pref==="X"||a.done)return null;const now=currentMinutes(),w=wk(currentArea,a.area),why=[];
- let s=({S:100,A:65,B:25})[a.pref]-Math.min(a.wait,180)*.5-w;
- const d=dpaItems.find(x=>x.id===a.id&&x.status==="購入済み"&&x.slot),sl=d?tmm(d.slot):null;
- if(sl!==null){if(now>=sl&&now<=sl+60)return{s:2000,why:["DPA枠の利用時間内"]};if(sl>now){if(sl-now<=w+15)return{s:1500,why:["DPA開始 "+hmm(sl)+"（移動約"+w+"分）"]};return null}}
- why.push(a.wait+"分待ち",w?"移動約"+w+"分":"同エリア");if(a.pref==="S")why.push("絶対行く");
- if(a.avg&&a.pref!=="S"){const p=now<630?0:now<1110?1:2,lt=Math.min(...a.avg.slice(p+1).filter(v=>v!==null),999);if(a.avg[p]!==null&&lt<a.avg[p]){s-=(a.avg[p]-lt)*.5;why.push("夜に空く傾向→後回し")}}
- return{s,why}}
-function renderReco(){const top=attractions.map(a=>({a,e:evalA(a)})).filter(x=>x.e).sort((p,q)=>q.e.s-p.e.s).slice(0,3);
- $("reco").innerHTML=top.map(({a,e},i)=>`<div class="reco"><div class="itemtop"><span class="badge" style="background:var(--n);color:white">候補 ${i+1}</span><span class="wait ${waitClass(a)}">${a.wait}分</span></div><div class="itemname" style="margin-top:7px">${a.name}</div><div class="itemmeta">${a.area} · <span class="badge ${prefClass(a.pref)}">${a.pref} ${prefText(a.pref)}</span> ${dpaBadge(a)}</div><div class="reason">${e.why.join(" ／ ")}</div><div class="toolbar"><button class="primary small" onclick="completeRide('${a.id}')">乗り終わった</button><button class="secondary small" onclick="planRide('${a.id}')">予定に追加</button></div></div>`).join("")||'<div class="card muted">現在おすすめできる候補はありません。</div>'}
 /* 保存: 画面状態のみidで保存し、コード側の施設定義へ上書きマージ(定義変更が反映される)。v2データは移行 */
 const pick=(o,ks)=>{const r={};if(o)ks.forEach(k=>{if(o[k]!==undefined)r[k]=o[k]});return r};
-function persist(){try{localStorage.setItem(KEY,JSON.stringify({at:Object.fromEntries(attractions.map(a=>[a.id,pick(a,["pref","done","status","wait"])])),dpa:Object.fromEntries(dpaItems.map(d=>[d.id,pick(d,["pref","status","purchaseTime","slot"])])),restaurants,breaks,events,currentArea,currentTime,dpaInterval,realClock,auto,applied}))}catch(e){}}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify({at:Object.fromEntries(attractions.map(a=>[a.id,pick(a,["pref","done","status","wait","skipUntil"])])),dpa:Object.fromEntries(dpaItems.map(d=>[d.id,pick(d,["pref","status","purchaseTime","slot","slotEnd"])])),restaurants,plan,currentArea,currentTime,dpaInterval,realClock,auto,applied}))}catch(e){}}
 function loadSaved(){try{let d=JSON.parse(localStorage.getItem(KEY));
  if(!d){const o=JSON.parse(localStorage.getItem("tdsnav-v2"));if(!o)return;const m=l=>Object.fromEntries((l||[]).map(x=>[x.id,x]));d={at:m(o.attractions),dpa:m(o.dpaItems),restaurants:o.restaurants,breaks:o.breaks,events:o.events,currentArea:o.currentArea,currentTime:o.currentTime,dpaInterval:o.dpaInterval}}
- attractions.forEach(a=>Object.assign(a,pick(d.at&&d.at[a.id],["pref","done","status","wait"])));
- dpaItems.forEach(x=>Object.assign(x,pick(d.dpa&&d.dpa[x.id],["pref","status","purchaseTime","slot"])));
+ attractions.forEach(a=>Object.assign(a,pick(d.at&&d.at[a.id],["pref","done","status","wait","skipUntil"])));
+ dpaItems.forEach(x=>Object.assign(x,pick(d.dpa&&d.dpa[x.id],["pref","status","purchaseTime","slot","slotEnd"])));
  if(d.restaurants)restaurants.splice(0,restaurants.length,...d.restaurants);if(d.breaks)breaks.splice(0,breaks.length,...d.breaks);if(d.events)events.splice(0,events.length,...d.events.filter(e=>e.time||e.kind));
+ restaurants.forEach(r=>r.rid=r.rid||uid());
+ if(d.plan)plan.splice(0,plan.length,...d.plan);else{(d.events||[]).filter(e=>e.kind==="ride"&&e.time).forEach(e=>plan.push({pid:uid(),kind:"ride",ref:e.id,name:e.name,start:e.time,end:"",done:!!e.done}));(d.breaks||[]).forEach(b=>plan.push({pid:uid(),kind:b.meal?"meal":"rest",name:b.name,start:b.time,end:hmm(tmm(b.time)+ +b.duration)}));restaurants.filter(r=>r.planned&&r.name).forEach(r=>plan.push({pid:uid(),kind:"meal",name:r.name,start:r.time,end:hmm(tmm(r.time)+60),src:"r:"+r.rid}))}
  if(d.currentArea)currentArea=d.currentArea;if(d.currentTime)currentTime=d.currentTime;if(d.dpaInterval)dpaInterval=d.dpaInterval;
  if(d.realClock!==undefined)realClock=d.realClock;if(d.auto!==undefined)auto=d.auto;applied=d.applied||null}catch(e){}}
+/* ===== v3.2: 予定表を編集可能な単一データ(plan)に統一 ===== */
+let plan=[],editing=null;const uid=()=>Math.random().toString(36).slice(2,8);
+function addPlan(it){it.pid=it.pid||uid();plan.push(it);persist();return it}
+const planBy=src=>plan.find(p=>p.src===src);
+function pEdit(pid,k,v){const p=plan.find(x=>x.pid===pid);if(!p)return;p[k]=v;if(k==="kind"&&v!=="ride")p.ref=null;persist();renderTimeline();renderAttractions();renderReco()}
+function pRide(pid,id){const p=plan.find(x=>x.pid===pid),a=attractions.find(x=>x.id===id);if(!p||!a)return;p.ref=id;p.name=a.name;persist();renderTimeline();renderReco()}
+function planDone(pid){const p=plan.find(x=>x.pid===pid);if(!p)return;p.done=!p.done;if(p.kind==="ride"&&p.ref){const a=attractions.find(x=>x.id===p.ref);if(a){a.done=p.done;if(p.done){currentArea=a.area;$("areaSelect").value=currentArea}}}persist();renderAll()}
+function delPlan(pid){const i=plan.findIndex(x=>x.pid===pid);if(i>=0)plan.splice(i,1);if(editing===pid)editing=null;persist();renderAll()}
+function addNew(){const p=addPlan({kind:"other",name:"新しい予定",start:"",end:""});editing=p.pid;renderTimeline()}
+function togglePlanAttr(id,on){const a=attractions.find(x=>x.id===id),src="a:"+id;if(on)addPlan({kind:"ride",ref:id,name:a.name,start:"",end:"",src});else{const i=plan.findIndex(p=>p.src===src);if(i>=0)plan.splice(i,1)}persist();renderAttractions();renderTimeline();renderReco()}
+function togglePlanRest(i,on){const r=restaurants[i];r.rid=r.rid||uid();const src="r:"+r.rid;if(on)addPlan({kind:"meal",name:r.name||"食事",area:r.area,start:r.time,end:hmm(tmm(r.time)+60),src});else{const k=plan.findIndex(p=>p.src===src);if(k>=0)plan.splice(k,1)}r.planned=on;persist();renderTimeline()}
+/* ホームの操作: 候補以外に行った場合も「完了」で現在地・候補が組み直される */
+function completeRide(id){const a=attractions.find(x=>x.id===id);if(!a)return;
+ if(a.done){a.done=false;plan.filter(p=>p.kind==="ride"&&p.ref===id&&p.done).forEach(p=>p.done=false)}
+ else{a.done=true;currentArea=a.area;$("areaSelect").value=currentArea;const p=plan.find(x=>x.kind==="ride"&&x.ref===id&&!x.done);if(p)p.done=true;else addPlan({kind:"ride",ref:id,name:a.name,start:hmm(currentMinutes()),end:"",done:true})}
+ persist();renderAll()}
+function planRide(id){const a=attractions.find(x=>x.id===id);let p=plan.find(x=>x.kind==="ride"&&x.ref===id&&!x.done);if(!p)p=addPlan({kind:"ride",ref:id,name:a.name,start:"",end:""});editing=p.pid;tab("plan")}
+function passRide(id){attractions.find(x=>x.id===id).skipUntil=currentMinutes()+30;persist();renderReco()}
+function editor(p){const ks={ride:"アトラクション",meal:"食事",rest:"休憩",other:"その他"},q=p.pid;
+ return `<div class="card" style="margin:8px 0 0;background:#fff"><div class="grid2"><div class="field"><label>種類</label><select onchange="pEdit('${q}','kind',this.value)">${Object.keys(ks).map(k=>`<option value="${k}" ${p.kind===k?"selected":""}>${ks[k]}</option>`).join("")}</select></div><div class="field"><label>${p.kind==="ride"?"アトラクション":"名前"}</label>${p.kind==="ride"?`<select onchange="pRide('${q}',this.value)"><option value="">選択…</option>${attractions.filter(a=>!a.closed).map(a=>`<option value="${a.id}" ${p.ref===a.id?"selected":""}>${esc(a.name)}</option>`).join("")}</select>`:`<input value="${esc(p.name)}" onchange="pEdit('${q}','name',this.value)">`}</div><div class="field"><label>開始</label><input type="time" value="${p.start||""}" onchange="pEdit('${q}','start',this.value)"></div><div class="field"><label>終了</label><input type="time" value="${p.end||""}" onchange="pEdit('${q}','end',this.value)"></div></div><div class="muted">開始を空にすると「時間未定」に移ります。</div><button class="secondary small" style="margin-top:6px" onclick="delPlan('${q}')">この予定を削除</button></div>`}
+function renderTimeline(){const all=[...plan,...dpaItems.filter(d=>d.status==="購入済み"&&d.slot).map(d=>({pid:"dpa:"+d.id,kind:"dpa",name:d.name,start:d.slot,end:d.slotEnd||""}))];
+ const sc=all.filter(p=>p.start).sort((a,b)=>a.start.localeCompare(b.start)),fx=all.filter(p=>!p.start);
+ let mx=-1;const ov=new Set();sc.forEach(p=>{if(tmm(p.start)<mx)ov.add(p.pid);if(p.end)mx=Math.max(mx,tmm(p.end))});
+ const kinds={ride:"アトラクション",meal:"食事",rest:"休憩",other:"その他",dpa:"DPA"};
+ const row=p=>{const d=p.kind==="dpa",ed=editing===p.pid;return `<div class="event ${p.done?"completed":""}"><strong>${p.start?p.start+(p.end?"〜"+p.end:""):"時間未定"}　${esc(p.name)}</strong><small><span class="badge ${d?"dpa":p.kind==="meal"?"tagmeal":p.kind==="rest"?"tagrest":"done"}">${d?"DPA確定":kinds[p.kind]||"その他"}</span>${p.done?" · 完了":""}${ov.has(p.pid)?' <span class="badge closed">時間が重なっています</span>':""}</small><div class="toolbar" style="margin-top:5px">${d?`<button class="secondary small" onclick="tab('dpa')">DPA管理で編集</button>`:`<button class="secondary small" onclick="editing=${ed?"null":`'${p.pid}'`};renderTimeline()">${ed?"閉じる":"編集"}</button><button class="secondary small" onclick="planDone('${p.pid}')">${p.done?"戻す":"完了"}</button>`}</div>${ed?editor(p):""}</div>`};
+ $("timeline").innerHTML=sc.map(row).join("")||'<div class="muted">時間のある予定はまだありません。</div>';
+ $("timelineFlex").innerHTML=fx.map(row).join("")||'<div class="muted">なし</div>'}
+function renderBreaks(){$("breakList").innerHTML=plan.filter(p=>(p.kind==="meal"||p.kind==="rest")&&!p.src).map(p=>`<div class="item"><div class="itemtop"><div><div class="itemname">${esc(p.name)}</div><div class="itemmeta">${p.start||"時間未定"}${p.end?"〜"+p.end:""}</div></div><button class="secondary small" onclick="delPlan('${p.pid}');renderBreaks()">削除</button></div></div>`).join("")}
+function renderAttractions(){let list=attractions.filter(a=>($("showClosed").checked||!a.closed)&&(!$("showOnlyDpa").checked||a.hasDpa));
+ $("attractionCount").textContent=`${list.length}施設`;
+ $("attractionList").innerHTML=list.map(a=>{const p=planBy("a:"+a.id);return `<div class="item attraction ${a.closed?"closedrow":""}"><div class="itemtop"><div style="min-width:0"><div class="itemname">${a.name} ${dpaBadge(a)} ${a.closed?'<span class="badge closed">11/7休止</span>':""}</div><div class="itemmeta">${a.area}</div></div>${prefControls(a.id,a.pref,"setPref")}</div>${a.closed||a.pref==="X"?"":`<div class="checkrow" style="margin:6px 0 0"><label><input type="checkbox" ${p?"checked":""} onchange="togglePlanAttr('${a.id}',this.checked)">予定に入れる</label>${p?`<input type="time" style="width:auto" value="${p.start}" onchange="pEdit('${p.pid}','start',this.value)"> 〜 <input type="time" style="width:auto" value="${p.end}" onchange="pEdit('${p.pid}','end',this.value)"><span class="muted">希望時間帯</span>`:""}</div>`}</div>`}).join("")}
+/* おすすめ: 希望度−待ち/2−移動。DPA枠内=最優先。予定表の時間帯は加点するが固定ではない(外れたら減点のみ) */
+function evalA(a){if(a.closed||a.status!=="運営中"||a.pref==="X"||a.done)return null;const now=currentMinutes();if(a.skipUntil&&now<a.skipUntil)return null;
+ const w=wk(currentArea,a.area),why=[];let s=({S:100,A:65,B:25})[a.pref]-Math.min(a.wait,180)*.5-w;
+ const d=dpaItems.find(x=>x.id===a.id&&x.status==="購入済み"&&x.slot),sl=d?tmm(d.slot):null;
+ if(sl!==null){const se=d.slotEnd?tmm(d.slotEnd):sl+60;if(now>=sl&&now<=se)return{s:2000,why:["DPA枠の利用時間内（"+d.slot+"〜"+(d.slotEnd||"")+"）"]};if(sl>now){if(sl-now<=w+15)return{s:1500,why:["DPA開始 "+d.slot+"（移動約"+w+"分）。そろそろ向かう時間"]};return null}}
+ why.push(a.pref+"："+prefText(a.pref));
+ const p=now<630?0:now<1110?1:2,av=a.avg&&a.avg[p]!=null?a.avg[p]:null;
+ why.push(a.wait+"分待ち"+(av!==null?(a.wait<av*.8?"（この時間帯の平均"+av+"分より短い＝狙い目）":a.wait>av*1.2?"（平均"+av+"分より長い）":"（平均並み）"):""),w?"現在地から移動約"+w+"分":"同じエリア");
+ if(av!==null&&a.pref!=="S"){const lt=Math.min(...a.avg.slice(p+1).filter(v=>v!==null),999);if(lt<av){s-=(av-lt)*.5;why.push("夜に空く傾向があるため後回し寄り")}}
+ const pw=plan.find(q=>q.kind==="ride"&&q.ref===a.id&&!q.done&&q.start);
+ if(pw){const ps=tmm(pw.start),pe=pw.end?tmm(pw.end):ps+60;if(now>=ps-10&&now<=pe){s+=30;why.push("予定表の時間帯（"+pw.start+(pw.end?"〜"+pw.end:"")+"）")}else if(ps-now>60){s-=15;why.push("予定表では"+pw.start+"頃（まだ先）")}else if(now>pe)why.push("予定の時間帯を過ぎています")}
+ if(a.dpaSale==="on_sale"&&a.hasDpa)why.push("DPA販売中（購入も検討）");
+ return{s,why}}
+function renderReco(){const top=attractions.map(a=>({a,e:evalA(a)})).filter(x=>x.e).sort((p,q)=>q.e.s-p.e.s).slice(0,3);
+ $("reco").innerHTML=top.map(({a,e},i)=>`<div class="reco" ${i?'style="padding:9px"':'style="border-width:2px;border-color:var(--g)"'}><div class="itemtop"><span class="badge" style="background:var(--n);color:white">${i?"次点 "+i:"いちばんのおすすめ"}</span><span class="wait ${waitClass(a)}">${a.wait}分</span></div><div class="itemname" style="margin-top:7px;${i?"":"font-size:18px"}">${a.name}</div><div class="itemmeta">${a.area} · <span class="badge ${prefClass(a.pref)}">${a.pref}</span> ${dpaBadge(a)}</div><ul class="reason" style="margin:6px 0 0;padding-left:16px">${e.why.map(x=>"<li>"+x+"</li>").join("")}</ul><div class="toolbar"><button class="primary small" onclick="completeRide('${a.id}')">乗り終わった</button><button class="secondary small" onclick="passRide('${a.id}')">今はパス</button><button class="secondary small" onclick="planRide('${a.id}')">予定に追加</button></div></div>`).join("")||'<div class="card muted">現在おすすめできる候補はありません。</div>'}
 function tab(id){document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===id));document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.id===id));renderAll()}
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>tab(b.dataset.tab));
 function areaOptions(selected){return areas.map(a=>`<option ${a===selected?"selected":""}>${a}</option>`).join("")}
@@ -249,18 +289,12 @@ function prefText(p){return {S:"絶対に乗りたい",A:"できれば乗りた�
 function prefClass(p){return "p"+p}
 function prefControls(id,p,fn){return `<div class="prefbuttons">${["S","A","B","X"].map(v=>`<button class="${p===v?"sel":""}" onclick="${fn}('${id}','${v}')">${v}</button>`).join("")}</div>`}
 function setPref(id,p){attractions.find(a=>a.id===id).pref=p;persist();renderAttractions();renderToday();renderReco()}
-function renderAttractions(){
- let list=attractions.filter(a=>($("showClosed").checked||!a.closed)&&(!$("showOnlyDpa").checked||a.hasDpa));
- $("attractionCount").textContent=`${list.length}施設`;
- $("attractionList").innerHTML=list.map(a=>`<div class="item attraction ${a.closed?"closedrow":""}"><div class="itemtop"><div style="min-width:0"><div class="itemname">${a.name} ${a.hasDpa?'<span class="badge dpa">DPA</span>':""} ${a.closed?'<span class="badge closed">11/7休止</span>':""}</div><div class="itemmeta">${a.area}</div></div>${prefControls(a.id,a.pref,"setPref")}</div></div>`).join("");
-}
-function addRestaurant(){restaurants.push({name:"",area:areas[0],time:"12:00",priority:restaurants.length+1});renderRestaurants()}
-function renderRestaurants(){$("restaurantList").innerHTML=restaurants.map((r,i)=>`<div class="restaurant-row"><div class="ranklabel">${i+1}</div><div><div class="grid2"><div class="field"><label>レストラン名</label><input value="${esc(r.name)}" onchange="restaurants[${i}].name=this.value"></div><div class="field"><label>エリア</label><select onchange="restaurants[${i}].area=this.value">${areaOptions(r.area)}</select></div><div class="field"><label>希望時間</label><select onchange="restaurants[${i}].time=this.value">${hourOptions().replace(`value="${r.time}"`,`value="${r.time}" selected`)}</select></div><div class="field" style="align-content:end"><button class="secondary small" onclick="restaurants.splice(${i},1);renderRestaurants();renderTimeline();persist()">この候補を削除</button></div></div><div class="checkrow"><label><input type="checkbox" ${r.planned?"checked":""} onchange="restaurants[${i}].planned=this.checked;renderTimeline();persist()">予定表に仮予定として追加</label><span class="badge tagmeal">食事候補</span></div></div></div>`).join("")}
-function addBreak(){let meal=$("typeMeal").checked,rest=$("typeRest").checked;if(!meal&&!rest){alert("「食事」か「休憩」を選択してください");return}let name=$("breakName").value.trim()||(meal&&rest?"食事・休憩":meal?"食事":"休憩");breaks.push({name,area:$("breakArea").value,time:$("breakTime").value,duration:$("breakDuration").value,meal,rest});persist();$("breakName").value="";renderBreaks();renderTimeline()}
-function renderBreaks(){$("breakList").innerHTML=breaks.map((b,i)=>`<div class="item"><div class="itemtop"><div><div class="itemname">${b.name}</div><div class="itemmeta">${b.area} · ${b.time} · ${b.duration}分</div></div><div>${b.meal?'<span class="badge tagmeal">食事</span>':""} ${b.rest?'<span class="badge tagrest">休憩</span>':""} <button class="secondary small" onclick="breaks.splice(${i},1);renderBreaks();renderTimeline()">削除</button></div></div></div>`).join("")}
+function addRestaurant(){restaurants.push({name:"",area:areas[0],time:"12:00",priority:restaurants.length+1,rid:uid()});renderRestaurants()}
+function renderRestaurants(){$("restaurantList").innerHTML=restaurants.map((r,i)=>`<div class="restaurant-row"><div class="ranklabel">${i+1}</div><div><div class="grid2"><div class="field"><label>レストラン名</label><input value="${esc(r.name)}" onchange="restaurants[${i}].name=this.value"></div><div class="field"><label>エリア</label><select onchange="restaurants[${i}].area=this.value">${areaOptions(r.area)}</select></div><div class="field"><label>希望時間</label><select onchange="restaurants[${i}].time=this.value">${hourOptions().replace(`value="${r.time}"`,`value="${r.time}" selected`)}</select></div><div class="field" style="align-content:end"><button class="secondary small" onclick="restaurants.splice(${i},1);renderRestaurants();renderTimeline();persist()">この候補を削除</button></div></div><div class="checkrow"><label><input type="checkbox" ${r.planned?"checked":""} onchange="togglePlanRest(${i},this.checked)">予定表に仮予定として追加</label><span class="badge tagmeal">食事候補</span></div></div></div>`).join("")}
+function addBreak(){let meal=$("typeMeal").checked,rest=$("typeRest").checked;if(!meal&&!rest){alert("「食事」か「休憩」を選択してください");return}let name=$("breakName").value.trim()||(meal&&rest?"食事・休憩":meal?"食事":"休憩");const t=$("breakTime").value;addPlan({kind:meal?"meal":"rest",name,area:$("breakArea").value,start:t,end:hmm(tmm(t)+ +$("breakDuration").value)});$("breakName").value="";renderBreaks();renderTimeline()}
 function setDpaPref(id,p){dpaItems.find(x=>x.id===id).pref=p;persist();renderDpa()}
-function setDpaStatus(id,v){let d=dpaItems.find(x=>x.id===id);d.status=v;if(v!=="購入済み"){d.purchaseTime="";d.slot=""}persist();renderDpa();renderTimeline();renderDpaCountdown()}
-function updateDpaField(id,key,value){let d=dpaItems.find(x=>x.id===id);d[key]=value;persist();renderTimeline();renderDpaCountdown()}
+function setDpaStatus(id,v){let d=dpaItems.find(x=>x.id===id);d.status=v;if(v==="購入済み"&&!d.purchaseTime)d.purchaseTime=hmm(currentMinutes());if(v!=="購入済み"){d.purchaseTime="";d.slot="";d.slotEnd=""}persist();renderDpa();renderTimeline();renderDpaCountdown();renderReco()}
+function updateDpaField(id,key,value){let d=dpaItems.find(x=>x.id===id);d[key]=value;persist();renderTimeline();renderDpaCountdown();renderReco()}
 let dpaInterval=60;
 let dpaClockBase=Date.now();
 function setDpaClock(value){currentTime=value||currentTime;dpaClockBase=Date.now();persist();renderDpaCountdown()}
@@ -270,26 +304,20 @@ function fmtCountdown(mins){
  const h=Math.floor(mins/60),m=mins%60;
  return h>0?`${h}時間${String(m).padStart(2,"0")}分`:`${m}分`;
 }
-function renderDpa(){$("dpaList").innerHTML=dpaItems.map(d=>`<div class="dpa-row"><div><div class="itemname">${d.name}</div><div class="itemmeta">${d.show?"ショー・エンターテイメント":"アトラクション"} · ¥${d.price.toLocaleString()} / 人</div><div style="margin-top:7px">${prefControls(d.id,d.pref,"setDpaPref")}</div></div><div class="stack" style="gap:5px"><select onchange="setDpaStatus('${d.id}',this.value)"><option ${d.status==="未定"?"selected":""}>未定</option><option ${d.status==="購入予定"?"selected":""}>購入予定</option><option ${d.status==="購入済み"?"selected":""}>購入済み</option><option ${d.status==="購入できず"?"selected":""}>購入できず</option></select>${d.status==="購入済み"?`<input type="time" aria-label="購入時刻" value="${d.purchaseTime}" onchange="updateDpaField('${d.id}','purchaseTime',this.value)" title="購入時刻"><input type="time" aria-label="利用時間" value="${d.slot}" onchange="updateDpaField('${d.id}','slot',this.value)" title="利用時間">`:""}</div></div>`).join("")}
+function renderDpa(){$("dpaList").innerHTML=dpaItems.map(d=>`<div class="dpa-row"><div><div class="itemname">${d.name}</div><div class="itemmeta">${d.show?"ショー・エンターテイメント":"アトラクション"} · ¥${d.price.toLocaleString()} / 人</div><div style="margin-top:7px">${prefControls(d.id,d.pref,"setDpaPref")}</div></div><div class="stack" style="gap:5px"><select onchange="setDpaStatus('${d.id}',this.value)"><option ${d.status==="未定"?"selected":""}>未定</option><option ${d.status==="購入予定"?"selected":""}>購入予定</option><option ${d.status==="購入済み"?"selected":""}>購入済み</option><option ${d.status==="購入できず"?"selected":""}>購入できず</option></select>${d.status==="購入済み"?`<div class="field"><label>購入した時刻</label><input type="time" value="${d.purchaseTime}" onchange="updateDpaField('${d.id}','purchaseTime',this.value)"></div><div class="field"><label>利用開始</label><input type="time" value="${d.slot}" onchange="updateDpaField('${d.id}','slot',this.value)"></div><div class="field"><label>利用終了</label><input type="time" value="${d.slotEnd||""}" onchange="updateDpaField('${d.id}','slotEnd',this.value)"></div>`:""}</div></div>`).join("")}
 function doneIds(){return events.filter(e=>e.kind==="ride"&&e.done).map(e=>e.id)}
-function completeRide(id){let a=attractions.find(x=>x.id===id);a.done=true;events.push({time:currentTime,name:a.name,kind:"ride",id,done:true});currentArea=a.area;$("areaSelect").value=currentArea;persist();renderAll()}
-function planRide(id){let a=attractions.find(x=>x.id===id);events.push({time:currentTime,name:a.name,kind:"ride",id,done:false});renderTimeline();tab("plan")}
 function waitClass(a){if(a.closed||a.status!=="運営中"||a.done||a.pref==="X")return "wait-closed";if(a.wait<=20)return "wait-low";if(a.wait<=40)return "wait-mid";if(a.wait<=60)return "wait-high";return "wait-veryhigh"}
 function renderToday(){
  const order={S:0,A:1,B:2,X:3};
  const list=[...attractions].sort((a,b)=>order[a.pref]-order[b.pref]||a.name.localeCompare(b.name,"ja"));
- $("todayList").innerHTML=list.map(a=>`<div class="item ${a.closed||a.done||a.pref==="X"||a.status!=="運営中"?"today-row-muted":""}"><div class="itemtop"><div style="min-width:0"><div class="itemname">${a.name} <span class="badge ${prefClass(a.pref)}">${a.pref}</span> ${dpaBadge(a)} ${a.closed?'<span class="badge closed">休止</span>':""} ${a.done?'<span class="badge done">完了</span>':""} ${a.status!=="運営中"&&!a.closed?'<span class="badge closed">'+a.status+'</span>':""}</div><div class="itemmeta">${a.area}</div></div><div class="wait ${waitClass(a)}">${a.closed||a.status!=="運営中"?"—":a.wait+"分"}</div></div></div>`).join("");
+ $("todayList").innerHTML=list.map(a=>`<div class="item ${a.closed||a.done||a.pref==="X"||a.status!=="運営中"?"today-row-muted":""}"><div class="itemtop"><div style="min-width:0"><div class="itemname">${a.name} <span class="badge ${prefClass(a.pref)}">${a.pref}</span> ${dpaBadge(a)} ${a.closed?'<span class="badge closed">休止</span>':""} ${a.done?'<span class="badge done">完了</span>':""} ${a.status!=="運営中"&&!a.closed?'<span class="badge closed">'+a.status+'</span>':""}</div><div class="itemmeta">${a.area}</div></div><div style="text-align:right"><div class="wait ${waitClass(a)}">${a.closed||a.status!=="運営中"?"—":a.wait+"分"}</div>${a.closed?"":`<button class="secondary small" style="margin-top:4px" onclick="completeRide('${a.id}')">${a.done?"戻す":"完了"}</button>`}</div></div></div>`).join("");
 }
 function renderWaitInputs(){$("waitInputs").innerHTML=attractions.filter(a=>!a.closed).map(a=>`<div class="item"><div class="itemtop"><div style="min-width:0"><div class="itemname">${a.name}</div><div class="itemmeta">${a.area}</div></div><div style="width:128px;display:grid;gap:5px"><input id="w-${a.id}" type="number" min="0" max="300" value="${a.wait}" aria-label="待ち時間"><select id="s-${a.id}"><option>運営中</option><option>一時休止</option><option>終日休止</option></select></div></div></div>`).join("")}
 function saveWaits(){attractions.filter(a=>!a.closed).forEach(a=>{let n=Number($("w-"+a.id).value);if(n>=0)a.wait=n;a.status=$("s-"+a.id).value});persist();renderAll();alert("状況を反映しました")}
 function updateLocation(){currentArea=$("areaSelect").value;currentTime=$("timeInput").value||currentTime;dpaClockBase=Date.now();$("dpaCurrentTime").value=currentTime;persist();renderAll();tab("today")}
-function renderTimeline(){
- let list=[...events.filter(e=>e.time),...breaks.map((b,i)=>({time:b.time,name:b.name,kind:"break",tags:[b.meal?"食事":null,b.rest?"休憩":null].filter(Boolean),area:b.area,duration:b.duration})),...restaurants.filter(r=>r.name&&r.planned).map(r=>({time:r.time,name:r.name,kind:"restaurant",tags:["食事"],area:r.area,priority:r.priority})),...dpaItems.filter(d=>d.status==="購入済み"&&d.slot).map(d=>({time:d.slot,name:d.name,kind:"dpa",tags:["DPA確定"],done:false}))].sort((a,b)=>a.time.localeCompare(b.time));
- $("timeline").innerHTML=list.map(e=>`<div class="event ${e.done?"completed":""}"><strong>${e.time}　${e.name}</strong><small>${e.kind==="dpa"?'<span class="badge dpa">DPA確定</span>':e.tags?e.tags.map(t=>`<span class="badge ${t==="食事"?"tagmeal":t==="休憩"?"tagrest":"dpa"}">${t}</span>`).join(" "):e.kind==="ride"?"アトラクション":""} ${e.area?"· "+e.area:""} ${e.duration?"· "+e.duration+"分":""} ${e.done?"· 完了":""}</small></div>`).join("")||'<div class="muted">予定はまだありません。</div>';
-}
 function saveAll(){persist();$("saved").textContent="このブラウザに保存しました。";renderAll()}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function renderAll(){ $("currentArea").textContent=currentArea;$("clock").textContent=hmm(currentMinutes());$("doneCount").textContent=attractions.filter(a=>a.done).length+" / "+attractions.length;renderReco();renderToday();renderTimeline();renderAttractions();renderRestaurants();renderBreaks();renderDpa();renderWaitInputs();renderDpaCountdown();renderData()}
+function renderAll(){ $("currentArea").textContent=currentArea;$("clock").textContent=hmm(currentMinutes());renderReco();renderToday();renderTimeline();renderAttractions();renderRestaurants();renderBreaks();renderDpa();renderWaitInputs();renderDpaCountdown();renderData()}
 fillSelects();loadSaved();$("areaSelect").value=currentArea;$("timeInput").value=currentTime;$("dpaInterval").value=String(dpaInterval);$("dpaCurrentTime").value=currentTime;$("realClock").checked=realClock;$("autoApply").checked=auto;dpaClockBase=Date.now();applyD();renderAll();loadJSON();
 setInterval(()=>{$("clock").textContent=hmm(currentMinutes());renderReco();renderDpaCountdown()},60000);
 setInterval(()=>{if(!document.hidden&&location.protocol!=="file:")loadJSON()},180000);
