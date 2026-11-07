@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "generated_at": "2026-11-07T08:32:29+09:00",
+ "generated_at": "2026-11-07T09:19:12+09:00",
  "source": "https://disneyreal.asumirai.info/realtime/disneysea-wait-today.html",
  "park_status": "open",
  "attractions": [
@@ -8,85 +8,113 @@
    "slug": "fs_frozen_journey",
    "name": "アナとエルサのフローズンジャーニー",
    "area": "fs",
-   "status": "stop",
+   "status": "open",
    "wait": null,
-   "avg": null,
+   "avg": [
+    40,
+    null,
+    null
+   ],
    "dpa": "on_sale",
-   "trend": null,
+   "trend": 250,
    "pa": false,
-   "raw": "アナとエルサのフローズンジャーニー DPA 販売中 準備中"
+   "raw": "アナとエルサのフローズンジャーニー DPA 販売中 運営中 9:00-21:00 分 250 % 40 - -"
   },
   {
    "slug": "fs_lantern_festival",
    "name": "ラプンツェルのランタンフェスティバル",
    "area": "fs",
-   "status": "stop",
+   "status": "open",
    "wait": null,
-   "avg": null,
+   "avg": [
+    15,
+    null,
+    null
+   ],
    "dpa": "on_sale",
-   "trend": null,
+   "trend": 167,
    "pa": false,
-   "raw": "ラプンツェルのランタンフェスティバル DPA 販売中 準備中"
+   "raw": "ラプンツェルのランタンフェスティバル DPA 販売中 運営中 9:00-21:00 分 167 % 15 - -"
   },
   {
    "slug": "fs_neverland_adventure",
    "name": "ピーターパンのネバーランドアドベンチャー",
    "area": "fs",
-   "status": "stop",
+   "status": "open",
    "wait": null,
-   "avg": null,
+   "avg": [
+    10,
+    null,
+    null
+   ],
    "dpa": "on_sale",
-   "trend": null,
+   "trend": 150,
    "pa": false,
-   "raw": "ピーターパンのネバーランドアドベンチャー DPA 販売中 準備中"
+   "raw": "ピーターパンのネバーランドアドベンチャー DPA 販売中 運営中 9:00-21:00 分 150 % 10 - -"
   },
   {
    "slug": "fs_busy_buggy",
    "name": "ティンカーベルのビジーバギー",
    "area": "fs",
-   "status": "stop",
+   "status": "open",
    "wait": null,
-   "avg": null,
+   "avg": [
+    20,
+    null,
+    null
+   ],
    "dpa": null,
-   "trend": null,
+   "trend": 50,
    "pa": false,
-   "raw": "ティンカーベルのビジーバギー 準備中"
+   "raw": "ティンカーベルのビジーバギー 運営中 9:00-21:00 分 50 % 20 - -"
   },
   {
    "slug": "mh_soaring",
    "name": "ソアリン",
    "area": "mh",
-   "status": "stop",
+   "status": "open",
    "wait": null,
-   "avg": null,
+   "avg": [
+    80,
+    null,
+    null
+   ],
    "dpa": "on_sale",
-   "trend": null,
+   "trend": 100,
    "pa": false,
-   "raw": "ソアリン DPA 販売中 準備中"
+   "raw": "ソアリン DPA 販売中 運営中 9:00-21:00 分 100 % 80 - -"
   },
   {
    "slug": "aw_tot",
    "name": "タワー オブ テラー",
    "area": "aw",
-   "status": "stop",
+   "status": "open",
    "wait": null,
-   "avg": null,
+   "avg": [
+    null,
+    null,
+    null
+   ],
    "dpa": "on_sale",
    "trend": null,
    "pa": false,
-   "raw": "タワー オブ テラー DPA 販売中 準備中"
+   "raw": "タワー オブ テラー DPA 販売中 運営中 9:00-21:00 分 - - -"
   },
   {
    "slug": "aw_toy",
    "name": "トイストーリーマニア",
    "area": "aw",
-   "status": "stop",
+   "status": "open",
    "wait": null,
-   "avg": null,
+   "avg": [
+    50,
+    null,
+    null
+   ],
    "dpa": "on_sale",
-   "trend": null,
+   "trend": 220,
    "pa": false,
-   "raw": "トイストーリーマニア DPA 販売中 準備中"
+   "raw": "トイストーリーマニア DPA 販売中 運営中 9:00-21:00 分 220 % 50 - -"
   },
   {
    "slug": "ld_indiana",
@@ -104,25 +132,33 @@
    "slug": "ld_raging",
    "name": "レイジングスピリッツ",
    "area": "ld",
-   "status": "stop",
+   "status": "open",
    "wait": null,
-   "avg": null,
+   "avg": [
+    null,
+    null,
+    null
+   ],
    "dpa": "on_sale",
    "trend": null,
    "pa": false,
-   "raw": "レイジングスピリッツ DPA 販売中 準備中"
+   "raw": "レイジングスピリッツ DPA 販売中 運営中 9:00-21:00 分 - - -"
   },
   {
    "slug": "mi_center",
    "name": "センター オブ ジ アース",
    "area": "mi",
-   "status": "stop",
+   "status": "open",
    "wait": null,
-   "avg": null,
+   "avg": [
+    null,
+    null,
+    null
+   ],
    "dpa": "on_sale",
    "trend": null,
    "pa": false,
-   "raw": "センター オブ ジ アース DPA 販売中 準備中"
+   "raw": "センター オブ ジ アース DPA 販売中 運営中 9:00-21:00 分 - - -"
   },
   {
    "slug": "mh_transit",
@@ -140,25 +176,29 @@
    "slug": "mh_gondolas",
    "name": "ヴェネツィアン ゴンドラ",
    "area": "mh",
-   "status": "stop",
-   "wait": null,
-   "avg": null,
+   "status": "open",
+   "wait": 15,
+   "avg": [
+    null,
+    null,
+    null
+   ],
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "ヴェネツィアン ゴンドラ 準備中"
+   "raw": "ヴェネツィアン ゴンドラ 運営中 9:00-21:00 15 分 - - -"
   },
   {
    "slug": "mh_fortress",
    "name": "フォートレス エクスプロレーション",
    "area": "mh",
-   "status": "stop",
+   "status": "open",
    "wait": null,
    "avg": null,
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "フォートレス エクスプロレーション 準備中"
+   "raw": "フォートレス エクスプロレーション 運営中 待ち時間は施設でご確認ください。"
   },
   {
    "slug": "mh_fortress_leo",
@@ -176,13 +216,17 @@
    "slug": "aw_turtle",
    "name": "タートルトーク",
    "area": "aw",
-   "status": "stop",
-   "wait": null,
-   "avg": null,
+   "status": "open",
+   "wait": 20,
+   "avg": [
+    null,
+    null,
+    null
+   ],
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "タートルトーク 準備中"
+   "raw": "タートルトーク 運営中 9:00-21:00 20 分 - - -"
   },
   {
    "slug": "aw_big",
@@ -200,61 +244,81 @@
    "slug": "aw_transit",
    "name": "スチーマーライン・アメフロ",
    "area": "aw",
-   "status": "stop",
-   "wait": null,
-   "avg": null,
+   "status": "open",
+   "wait": 5,
+   "avg": [
+    null,
+    null,
+    null
+   ],
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "スチーマーライン・アメフロ 準備中"
+   "raw": "スチーマーライン・アメフロ 運営中 9:00-20:45 5 分 - - -"
   },
   {
    "slug": "aw_railway",
    "name": "レールウェイ・アメフロ",
    "area": "aw",
-   "status": "stop",
-   "wait": null,
-   "avg": null,
+   "status": "open",
+   "wait": 5,
+   "avg": [
+    null,
+    null,
+    null
+   ],
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "レールウェイ・アメフロ 準備中"
+   "raw": "レールウェイ・アメフロ 運営中 9:00-21:00 5 分 - - -"
   },
   {
    "slug": "pd_searider",
    "name": "ニモ フレンズ シーライダー",
    "area": "pd",
-   "status": "stop",
-   "wait": null,
-   "avg": null,
+   "status": "open",
+   "wait": 15,
+   "avg": [
+    null,
+    null,
+    null
+   ],
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "ニモ フレンズ シーライダー 準備中"
+   "raw": "ニモ フレンズ シーライダー 運営中 9:00-21:00 15 分 - - -"
   },
   {
    "slug": "pd_railway",
    "name": "レールウェイ・ポートディスカバリー",
    "area": "pd",
-   "status": "stop",
-   "wait": null,
-   "avg": null,
+   "status": "open",
+   "wait": 5,
+   "avg": [
+    null,
+    null,
+    null
+   ],
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "レールウェイ・ポートディスカバリー 準備中"
+   "raw": "レールウェイ・ポートディスカバリー 運営中 9:00-21:00 5 分 - - -"
   },
   {
    "slug": "ld_transit",
    "name": "スチーマーライン・ロストリバーデルタ",
    "area": "ld",
-   "status": "stop",
-   "wait": null,
-   "avg": null,
+   "status": "open",
+   "wait": 5,
+   "avg": [
+    null,
+    null,
+    null
+   ],
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "スチーマーライン・ロストリバーデルタ 準備中"
+   "raw": "スチーマーライン・ロストリバーデルタ 運営中 9:00-21:00 5 分 - - -"
   },
   {
    "slug": "ac_magic",
@@ -272,25 +336,33 @@
    "slug": "ac_jasmine",
    "name": "ジャスミン フライングカーペット",
    "area": "ac",
-   "status": "stop",
-   "wait": null,
-   "avg": null,
+   "status": "open",
+   "wait": 5,
+   "avg": [
+    null,
+    null,
+    null
+   ],
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "ジャスミン フライングカーペット 準備中"
+   "raw": "ジャスミン フライングカーペット 運営中 9:00-21:00 5 分 - - -"
   },
   {
    "slug": "ac_sindbad",
    "name": "シンドバッド ストーリーブック ヴォヤッジ",
    "area": "ac",
-   "status": "stop",
-   "wait": null,
-   "avg": null,
+   "status": "open",
+   "wait": 5,
+   "avg": [
+    null,
+    null,
+    null
+   ],
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "シンドバッド ストーリーブック ヴォヤッジ 準備中"
+   "raw": "シンドバッド ストーリーブック ヴォヤッジ 運営中 9:00-21:00 5 分 - - -"
   },
   {
    "slug": "ac_caravan",
@@ -320,73 +392,93 @@
    "slug": "ml_play",
    "name": "アリエル プレイグラウンド",
    "area": "ml",
-   "status": "stop",
+   "status": "open",
    "wait": null,
    "avg": null,
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "アリエル プレイグラウンド 準備中"
+   "raw": "アリエル プレイグラウンド 運営中 待ち時間は施設でご確認ください。"
   },
   {
    "slug": "ml_flounder",
    "name": "フライングフィッシュコースター",
    "area": "ml",
-   "status": "stop",
-   "wait": null,
-   "avg": null,
+   "status": "open",
+   "wait": 5,
+   "avg": [
+    null,
+    null,
+    null
+   ],
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "フライングフィッシュコースター 準備中"
+   "raw": "フライングフィッシュコースター 運営中 9:00-21:00 5 分 - - -"
   },
   {
    "slug": "ml_scuttle",
    "name": "スカットル スクーター",
    "area": "ml",
-   "status": "stop",
-   "wait": null,
-   "avg": null,
+   "status": "open",
+   "wait": 5,
+   "avg": [
+    null,
+    null,
+    null
+   ],
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "スカットル スクーター 準備中"
+   "raw": "スカットル スクーター 運営中 9:00-21:00 5 分 - - -"
   },
   {
    "slug": "ml_jelly",
    "name": "ジャンピン ジェリーフィッシュ",
    "area": "ml",
-   "status": "stop",
-   "wait": null,
-   "avg": null,
+   "status": "open",
+   "wait": 5,
+   "avg": [
+    null,
+    null,
+    null
+   ],
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "ジャンピン ジェリーフィッシュ 準備中"
+   "raw": "ジャンピン ジェリーフィッシュ 運営中 9:00-21:00 5 分 - - -"
   },
   {
    "slug": "ml_balloon",
    "name": "ブローフィッシュ バルーンレース",
    "area": "ml",
-   "status": "stop",
-   "wait": null,
-   "avg": null,
+   "status": "open",
+   "wait": 5,
+   "avg": [
+    null,
+    null,
+    null
+   ],
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "ブローフィッシュ バルーンレース 準備中"
+   "raw": "ブローフィッシュ バルーンレース 運営中 9:00-21:00 5 分 - - -"
   },
   {
    "slug": "ml_pool",
    "name": "ワールプール",
    "area": "ml",
-   "status": "stop",
-   "wait": null,
-   "avg": null,
+   "status": "open",
+   "wait": 5,
+   "avg": [
+    null,
+    null,
+    null
+   ],
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "ワールプール 準備中"
+   "raw": "ワールプール 運営中 9:00-21:00 5 分 - - -"
   }
  ],
  "restaurants": []
