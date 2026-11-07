@@ -1,14 +1,14 @@
 {
  "schema": 1,
- "generated_at": "2026-11-07T21:20:45+09:00",
+ "generated_at": "2026-11-07T22:19:46+09:00",
  "source": "https://disneyreal.asumirai.info/realtime/disneysea-wait-today.html",
- "park_status": "open",
+ "park_status": "closed",
  "attractions": [
   {
    "slug": "fs_frozen_journey",
    "name": "アナとエルサのフローズンジャーニー",
    "area": "fs",
-   "status": "open",
+   "status": "closed",
    "wait": null,
    "avg": [
     165,
@@ -18,13 +18,13 @@
    "dpa": "sale_none",
    "trend": null,
    "pa": false,
-   "raw": "アナとエルサのフローズンジャーニー DPA 販売なし 案内終了 分 165 210 120"
+   "raw": "アナとエルサのフローズンジャーニー DPA 販売なし 閉園中 （アトラクション詳細・混雑予想はこちら） 分 165 210 120"
   },
   {
    "slug": "fs_lantern_festival",
    "name": "ラプンツェルのランタンフェスティバル",
    "area": "fs",
-   "status": "open",
+   "status": "closed",
    "wait": null,
    "avg": [
     80,
@@ -34,13 +34,13 @@
    "dpa": "sale_none",
    "trend": null,
    "pa": false,
-   "raw": "ラプンツェルのランタンフェスティバル DPA 販売なし 案内終了 分 80 120 55"
+   "raw": "ラプンツェルのランタンフェスティバル DPA 販売なし 閉園中 （アトラクション詳細・混雑予想はこちら） 分 80 120 55"
   },
   {
    "slug": "fs_neverland_adventure",
    "name": "ピーターパンのネバーランドアドベンチャー",
    "area": "fs",
-   "status": "open",
+   "status": "closed",
    "wait": null,
    "avg": [
     70,
@@ -50,13 +50,13 @@
    "dpa": "sale_none",
    "trend": null,
    "pa": false,
-   "raw": "ピーターパンのネバーランドアドベンチャー DPA 販売なし 案内終了 分 70 120 45"
+   "raw": "ピーターパンのネバーランドアドベンチャー DPA 販売なし 閉園中 （アトラクション詳細・混雑予想はこちら） 分 70 120 45"
   },
   {
    "slug": "fs_busy_buggy",
    "name": "ティンカーベルのビジーバギー",
    "area": "fs",
-   "status": "open",
+   "status": "closed",
    "wait": null,
    "avg": [
     45,
@@ -66,13 +66,13 @@
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "ティンカーベルのビジーバギー 案内終了 分 45 65 40"
+   "raw": "ティンカーベルのビジーバギー 閉園中 （アトラクション詳細・混雑予想はこちら） 分 45 65 40"
   },
   {
    "slug": "mh_soaring",
    "name": "ソアリン",
    "area": "mh",
-   "status": "open",
+   "status": "closed",
    "wait": null,
    "avg": [
     155,
@@ -82,13 +82,13 @@
    "dpa": "sale_none",
    "trend": null,
    "pa": false,
-   "raw": "ソアリン DPA 販売なし 案内終了 分 155 195 130"
+   "raw": "ソアリン DPA 販売なし 閉園中 （アトラクション詳細・混雑予想はこちら） 分 155 195 130"
   },
   {
    "slug": "aw_tot",
    "name": "タワー オブ テラー",
    "area": "aw",
-   "status": "open",
+   "status": "closed",
    "wait": null,
    "avg": [
     120,
@@ -98,13 +98,13 @@
    "dpa": "sale_none",
    "trend": null,
    "pa": false,
-   "raw": "タワー オブ テラー DPA 販売なし 案内終了 分 120 145 120"
+   "raw": "タワー オブ テラー DPA 販売なし 閉園中 （アトラクション詳細・混雑予想はこちら） 分 120 145 120"
   },
   {
    "slug": "aw_toy",
    "name": "トイストーリーマニア",
    "area": "aw",
-   "status": "open",
+   "status": "closed",
    "wait": null,
    "avg": [
     140,
@@ -114,25 +114,25 @@
    "dpa": "sale_none",
    "trend": null,
    "pa": false,
-   "raw": "トイストーリーマニア DPA 販売なし 案内終了 分 140 160 100"
+   "raw": "トイストーリーマニア DPA 販売なし 閉園中 （アトラクション詳細・混雑予想はこちら） 分 140 160 100"
   },
   {
    "slug": "ld_indiana",
    "name": "インディジョーンズ",
    "area": "ld",
-   "status": "stop",
+   "status": "closed",
    "wait": null,
    "avg": null,
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "インディジョーンズ 終日運営・公演中止"
+   "raw": "インディジョーンズ 閉園中 （アトラクション詳細・混雑予想はこちら）"
   },
   {
    "slug": "ld_raging",
    "name": "レイジングスピリッツ",
    "area": "ld",
-   "status": "open",
+   "status": "closed",
    "wait": null,
    "avg": [
     60,
@@ -142,13 +142,13 @@
    "dpa": "sale_none",
    "trend": null,
    "pa": false,
-   "raw": "レイジングスピリッツ DPA 販売なし 案内終了 分 60 120 50"
+   "raw": "レイジングスピリッツ DPA 販売なし 閉園中 （アトラクション詳細・混雑予想はこちら） 分 60 120 50"
   },
   {
    "slug": "mi_center",
    "name": "センター オブ ジ アース",
    "area": "mi",
-   "status": "open",
+   "status": "closed",
    "wait": null,
    "avg": [
     130,
@@ -158,26 +158,26 @@
    "dpa": "sale_none",
    "trend": null,
    "pa": false,
-   "raw": "センター オブ ジ アース DPA 販売なし 案内終了 分 130 160 110"
+   "raw": "センター オブ ジ アース DPA 販売なし 閉園中 （アトラクション詳細・混雑予想はこちら） 分 130 160 110"
   },
   {
    "slug": "mh_transit",
    "name": "スチーマーライン・メディテレーニアンハーバー",
    "area": "mh",
-   "status": "stop",
+   "status": "closed",
    "wait": null,
    "avg": null,
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "スチーマーライン・メディテレーニアンハーバー 終日運営・公演中止"
+   "raw": "スチーマーライン・メディテレーニアンハーバー 閉園中 （アトラクション詳細・混雑予想はこちら）"
   },
   {
    "slug": "mh_gondolas",
    "name": "ヴェネツィアン ゴンドラ",
    "area": "mh",
-   "status": "open",
-   "wait": 30,
+   "status": "closed",
+   "wait": null,
    "avg": [
     30,
     40,
@@ -186,26 +186,26 @@
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "ヴェネツィアン ゴンドラ 案内終了 30 分 30 40 20"
+   "raw": "ヴェネツィアン ゴンドラ 閉園中 （アトラクション詳細・混雑予想はこちら） 30 分 30 40 20"
   },
   {
    "slug": "mh_fortress",
    "name": "フォートレス エクスプロレーション",
    "area": "mh",
-   "status": "open",
+   "status": "closed",
    "wait": null,
    "avg": null,
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "フォートレス エクスプロレーション 案内終了"
+   "raw": "フォートレス エクスプロレーション 閉園中 （アトラクション詳細・混雑予想はこちら）"
   },
   {
    "slug": "mh_fortress_leo",
    "name": "フォートレス レオナルドチャレンジ",
    "area": "mh",
-   "status": "open",
-   "wait": 13,
+   "status": "closed",
+   "wait": null,
    "avg": [
     null,
     15,
@@ -214,14 +214,14 @@
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "フォートレス レオナルドチャレンジ 案内終了 13 分 - 15 -"
+   "raw": "フォートレス レオナルドチャレンジ 閉園中 （アトラクション詳細・混雑予想はこちら） 13 分 - 15 -"
   },
   {
    "slug": "aw_turtle",
    "name": "タートルトーク",
    "area": "aw",
-   "status": "open",
-   "wait": 33,
+   "status": "closed",
+   "wait": null,
    "avg": [
     25,
     40,
@@ -230,14 +230,14 @@
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "タートルトーク 案内終了 33 分 25 40 30"
+   "raw": "タートルトーク 閉園中 （アトラクション詳細・混雑予想はこちら） 33 分 25 40 30"
   },
   {
    "slug": "aw_big",
    "name": "ビッグシティ ヴィークル",
    "area": "aw",
-   "status": "open",
-   "wait": 10,
+   "status": "closed",
+   "wait": null,
    "avg": [
     null,
     10,
@@ -246,14 +246,14 @@
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "ビッグシティ ヴィークル 案内終了 10 分 - 10 -"
+   "raw": "ビッグシティ ヴィークル 閉園中 （アトラクション詳細・混雑予想はこちら） 10 分 - 10 -"
   },
   {
    "slug": "aw_transit",
    "name": "スチーマーライン・アメフロ",
    "area": "aw",
-   "status": "open",
-   "wait": 5,
+   "status": "closed",
+   "wait": null,
    "avg": [
     5,
     5,
@@ -262,14 +262,14 @@
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "スチーマーライン・アメフロ 案内終了 5 分 5 5 5"
+   "raw": "スチーマーライン・アメフロ 閉園中 （アトラクション詳細・混雑予想はこちら） 5 分 5 5 5"
   },
   {
    "slug": "aw_railway",
    "name": "レールウェイ・アメフロ",
    "area": "aw",
-   "status": "open",
-   "wait": 18,
+   "status": "closed",
+   "wait": null,
    "avg": [
     10,
     25,
@@ -278,14 +278,14 @@
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "レールウェイ・アメフロ 案内終了 18 分 10 25 10"
+   "raw": "レールウェイ・アメフロ 閉園中 （アトラクション詳細・混雑予想はこちら） 18 分 10 25 10"
   },
   {
    "slug": "pd_searider",
    "name": "ニモ フレンズ シーライダー",
    "area": "pd",
-   "status": "open",
-   "wait": 24,
+   "status": "closed",
+   "wait": null,
    "avg": [
     20,
     30,
@@ -294,14 +294,14 @@
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "ニモ フレンズ シーライダー 案内終了 24 分 20 30 15"
+   "raw": "ニモ フレンズ シーライダー 閉園中 （アトラクション詳細・混雑予想はこちら） 24 分 20 30 15"
   },
   {
    "slug": "pd_railway",
    "name": "レールウェイ・ポートディスカバリー",
    "area": "pd",
-   "status": "open",
-   "wait": 18,
+   "status": "closed",
+   "wait": null,
    "avg": [
     5,
     25,
@@ -310,14 +310,14 @@
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "レールウェイ・ポートディスカバリー 案内終了 18 分 5 25 15"
+   "raw": "レールウェイ・ポートディスカバリー 閉園中 （アトラクション詳細・混雑予想はこちら） 18 分 5 25 15"
   },
   {
    "slug": "ld_transit",
    "name": "スチーマーライン・ロストリバーデルタ",
    "area": "ld",
-   "status": "open",
-   "wait": 9,
+   "status": "closed",
+   "wait": null,
    "avg": [
     5,
     15,
@@ -326,14 +326,14 @@
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "スチーマーライン・ロストリバーデルタ 案内終了 9 分 5 15 5"
+   "raw": "スチーマーライン・ロストリバーデルタ 閉園中 （アトラクション詳細・混雑予想はこちら） 9 分 5 15 5"
   },
   {
    "slug": "ac_magic",
    "name": "マジックランプシアター",
    "area": "ac",
-   "status": "open",
-   "wait": 23,
+   "status": "closed",
+   "wait": null,
    "avg": [
     15,
     30,
@@ -342,14 +342,14 @@
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "マジックランプシアター 案内終了 23 分 15 30 15"
+   "raw": "マジックランプシアター 閉園中 （アトラクション詳細・混雑予想はこちら） 23 分 15 30 15"
   },
   {
    "slug": "ac_jasmine",
    "name": "ジャスミン フライングカーペット",
    "area": "ac",
-   "status": "open",
-   "wait": 32,
+   "status": "closed",
+   "wait": null,
    "avg": [
     20,
     40,
@@ -358,14 +358,14 @@
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "ジャスミン フライングカーペット 案内終了 32 分 20 40 25"
+   "raw": "ジャスミン フライングカーペット 閉園中 （アトラクション詳細・混雑予想はこちら） 32 分 20 40 25"
   },
   {
    "slug": "ac_sindbad",
    "name": "シンドバッド ストーリーブック ヴォヤッジ",
    "area": "ac",
-   "status": "open",
-   "wait": 15,
+   "status": "closed",
+   "wait": null,
    "avg": [
     5,
     20,
@@ -374,14 +374,14 @@
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "シンドバッド ストーリーブック ヴォヤッジ 案内終了 15 分 5 20 5"
+   "raw": "シンドバッド ストーリーブック ヴォヤッジ 閉園中 （アトラクション詳細・混雑予想はこちら） 15 分 5 20 5"
   },
   {
    "slug": "ac_caravan",
    "name": "キャラバンカルーセル",
    "area": "ac",
-   "status": "open",
-   "wait": 15,
+   "status": "closed",
+   "wait": null,
    "avg": [
     5,
     20,
@@ -390,38 +390,38 @@
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "キャラバンカルーセル 案内終了 15 分 5 20 10"
+   "raw": "キャラバンカルーセル 閉園中 （アトラクション詳細・混雑予想はこちら） 15 分 5 20 10"
   },
   {
    "slug": "ml_theater",
    "name": "マーメイドラグーンシアター",
    "area": "ml",
-   "status": "stop",
+   "status": "closed",
    "wait": null,
    "avg": null,
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "マーメイドラグーンシアター 終日運営・公演中止"
+   "raw": "マーメイドラグーンシアター 閉園中 （アトラクション詳細・混雑予想はこちら）"
   },
   {
    "slug": "ml_play",
    "name": "アリエル プレイグラウンド",
    "area": "ml",
-   "status": "open",
+   "status": "closed",
    "wait": null,
    "avg": null,
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "アリエル プレイグラウンド 案内終了"
+   "raw": "アリエル プレイグラウンド 閉園中 （アトラクション詳細・混雑予想はこちら）"
   },
   {
    "slug": "ml_flounder",
    "name": "フライングフィッシュコースター",
    "area": "ml",
-   "status": "open",
-   "wait": 36,
+   "status": "closed",
+   "wait": null,
    "avg": [
     25,
     45,
@@ -430,14 +430,14 @@
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "フライングフィッシュコースター 案内終了 36 分 25 45 25"
+   "raw": "フライングフィッシュコースター 閉園中 （アトラクション詳細・混雑予想はこちら） 36 分 25 45 25"
   },
   {
    "slug": "ml_scuttle",
    "name": "スカットル スクーター",
    "area": "ml",
-   "status": "open",
-   "wait": 28,
+   "status": "closed",
+   "wait": null,
    "avg": [
     25,
     35,
@@ -446,14 +446,14 @@
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "スカットル スクーター 案内終了 28 分 25 35 20"
+   "raw": "スカットル スクーター 閉園中 （アトラクション詳細・混雑予想はこちら） 28 分 25 35 20"
   },
   {
    "slug": "ml_jelly",
    "name": "ジャンピン ジェリーフィッシュ",
    "area": "ml",
-   "status": "open",
-   "wait": 23,
+   "status": "closed",
+   "wait": null,
    "avg": [
     15,
     30,
@@ -462,14 +462,14 @@
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "ジャンピン ジェリーフィッシュ 案内終了 23 分 15 30 10"
+   "raw": "ジャンピン ジェリーフィッシュ 閉園中 （アトラクション詳細・混雑予想はこちら） 23 分 15 30 10"
   },
   {
    "slug": "ml_balloon",
    "name": "ブローフィッシュ バルーンレース",
    "area": "ml",
-   "status": "open",
-   "wait": 32,
+   "status": "closed",
+   "wait": null,
    "avg": [
     15,
     40,
@@ -478,14 +478,14 @@
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "ブローフィッシュ バルーンレース 案内終了 32 分 15 40 20"
+   "raw": "ブローフィッシュ バルーンレース 閉園中 （アトラクション詳細・混雑予想はこちら） 32 分 15 40 20"
   },
   {
    "slug": "ml_pool",
    "name": "ワールプール",
    "area": "ml",
-   "status": "open",
-   "wait": 25,
+   "status": "closed",
+   "wait": null,
    "avg": [
     15,
     30,
@@ -494,7 +494,7 @@
    "dpa": null,
    "trend": null,
    "pa": false,
-   "raw": "ワールプール 案内終了 25 分 15 30 20"
+   "raw": "ワールプール 閉園中 （アトラクション詳細・混雑予想はこちら） 25 分 15 30 20"
   }
  ],
  "restaurants": []
