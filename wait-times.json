@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "generated_at": "2026-11-07T14:35:55+09:00",
+ "generated_at": "2026-11-07T15:26:50+09:00",
  "source": "https://disneyreal.asumirai.info/realtime/disneysea-wait-today.html",
  "park_status": "open",
  "attractions": [
@@ -32,9 +32,9 @@
     null
    ],
    "dpa": "on_sale",
-   "trend": 14,
+   "trend": 17,
    "pa": false,
-   "raw": "ラプンツェルのランタンフェスティバル DPA 販売中 運営中 9:00-21:00 分 14 % 80 130 -"
+   "raw": "ラプンツェルのランタンフェスティバル DPA 販売中 運営中 9:00-21:00 分 17 % 80 130 -"
   },
   {
    "slug": "fs_neverland_adventure",
@@ -48,9 +48,9 @@
     null
    ],
    "dpa": "on_sale",
-   "trend": 0,
+   "trend": 17,
    "pa": false,
-   "raw": "ピーターパンのネバーランドアドベンチャー DPA 販売中 運営中 9:00-21:00 分 0 % 70 130 -"
+   "raw": "ピーターパンのネバーランドアドベンチャー DPA 販売中 運営中 9:00-21:00 分 17 % 70 130 -"
   },
   {
    "slug": "fs_busy_buggy",
@@ -76,13 +76,13 @@
    "wait": null,
    "avg": [
     155,
-    190,
+    195,
     null
    ],
    "dpa": "sale_none",
-   "trend": 11,
+   "trend": 0,
    "pa": false,
-   "raw": "ソアリン DPA 販売なし 運営中 9:00-21:00 分 11 % 155 190 -"
+   "raw": "ソアリン DPA 販売なし 運営中 9:00-21:00 分 0 % 155 195 -"
   },
   {
    "slug": "aw_tot",
@@ -108,13 +108,13 @@
    "wait": null,
    "avg": [
     140,
-    150,
+    155,
     null
    ],
    "dpa": "sale_none",
-   "trend": 13,
+   "trend": 0,
    "pa": false,
-   "raw": "トイストーリーマニア DPA 販売なし 運営中 9:00-21:00 分 13 % 140 150 -"
+   "raw": "トイストーリーマニア DPA 販売なし 運営中 9:00-21:00 分 0 % 140 155 -"
   },
   {
    "slug": "ld_indiana",
@@ -136,13 +136,13 @@
    "wait": null,
    "avg": [
     60,
-    115,
+    120,
     null
    ],
    "dpa": "on_sale",
-   "trend": 0,
+   "trend": 17,
    "pa": false,
-   "raw": "レイジングスピリッツ DPA 販売中 運営中 9:00-21:00 分 0 % 60 115 -"
+   "raw": "レイジングスピリッツ DPA 販売中 運営中 9:00-21:00 分 17 % 60 120 -"
   },
   {
    "slug": "mi_center",
@@ -217,16 +217,16 @@
    "name": "タートルトーク",
    "area": "aw",
    "status": "open",
-   "wait": 40,
+   "wait": 50,
    "avg": [
     25,
     35,
     null
    ],
    "dpa": null,
-   "trend": 33,
+   "trend": 25,
    "pa": false,
-   "raw": "タートルトーク 運営中 9:00-21:00 40 分 33 % 25 35 -"
+   "raw": "タートルトーク 運営中 9:00-21:00 50 分 25 % 25 35 -"
   },
   {
    "slug": "aw_big",
@@ -257,16 +257,16 @@
    "name": "レールウェイ・アメフロ",
    "area": "aw",
    "status": "open",
-   "wait": 20,
+   "wait": 30,
    "avg": [
     10,
     25,
     null
    ],
    "dpa": null,
-   "trend": 0,
+   "trend": 20,
    "pa": false,
-   "raw": "レールウェイ・アメフロ 運営中 9:00-21:00 20 分 0 % 10 25 -"
+   "raw": "レールウェイ・アメフロ 運営中 9:00-21:00 30 分 20 % 10 25 -"
   },
   {
    "slug": "pd_searider",
@@ -289,16 +289,16 @@
    "name": "レールウェイ・ポートディスカバリー",
    "area": "pd",
    "status": "open",
-   "wait": 25,
+   "wait": 30,
    "avg": [
     5,
     20,
     null
    ],
    "dpa": null,
-   "trend": 25,
+   "trend": 20,
    "pa": false,
-   "raw": "レールウェイ・ポートディスカバリー 運営中 9:00-21:00 25 分 25 % 5 20 -"
+   "raw": "レールウェイ・ポートディスカバリー 運営中 9:00-21:00 30 分 20 % 5 20 -"
   },
   {
    "slug": "ld_transit",
@@ -317,16 +317,16 @@
    "name": "マジックランプシアター",
    "area": "ac",
    "status": "open",
-   "wait": 30,
+   "wait": 45,
    "avg": [
     15,
     25,
     null
    ],
    "dpa": null,
-   "trend": 0,
+   "trend": 50,
    "pa": false,
-   "raw": "マジックランプシアター 運営中 10:00-20:35 30 分 0 % 15 25 -"
+   "raw": "マジックランプシアター 運営中 10:00-20:35 45 分 50 % 15 25 -"
   },
   {
    "slug": "ac_jasmine",
@@ -349,7 +349,7 @@
    "name": "シンドバッド ストーリーブック ヴォヤッジ",
    "area": "ac",
    "status": "open",
-   "wait": 25,
+   "wait": 20,
    "avg": [
     5,
     20,
@@ -358,7 +358,7 @@
    "dpa": null,
    "trend": 0,
    "pa": false,
-   "raw": "シンドバッド ストーリーブック ヴォヤッジ 運営中 9:00-21:00 25 分 0 % 5 20 -"
+   "raw": "シンドバッド ストーリーブック ヴォヤッジ 運営中 9:00-21:00 20 分 0 % 5 20 -"
   },
   {
    "slug": "ac_caravan",
@@ -405,32 +405,32 @@
    "name": "フライングフィッシュコースター",
    "area": "ml",
    "status": "open",
-   "wait": 40,
+   "wait": 50,
    "avg": [
     25,
     45,
     null
    ],
    "dpa": null,
-   "trend": 20,
+   "trend": 25,
    "pa": false,
-   "raw": "フライングフィッシュコースター 運営中 9:00-21:00 40 分 20 % 25 45 -"
+   "raw": "フライングフィッシュコースター 運営中 9:00-21:00 50 分 25 % 25 45 -"
   },
   {
    "slug": "ml_scuttle",
    "name": "スカットル スクーター",
    "area": "ml",
    "status": "open",
-   "wait": 40,
+   "wait": 30,
    "avg": [
     25,
     35,
     null
    ],
    "dpa": null,
-   "trend": 33,
+   "trend": 25,
    "pa": false,
-   "raw": "スカットル スクーター 運営中 9:00-21:00 40 分 33 % 25 35 -"
+   "raw": "スカットル スクーター 運営中 9:00-21:00 30 分 25 % 25 35 -"
   },
   {
    "slug": "ml_jelly",
