@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "generated_at": "2026-11-07T19:28:39+09:00",
+ "generated_at": "2026-11-07T20:10:13+09:00",
  "source": "https://disneyreal.asumirai.info/realtime/disneysea-wait-today.html",
  "park_status": "open",
  "attractions": [
@@ -8,17 +8,13 @@
    "slug": "fs_frozen_journey",
    "name": "アナとエルサのフローズンジャーニー",
    "area": "fs",
-   "status": "open",
+   "status": "stop",
    "wait": null,
-   "avg": [
-    165,
-    210,
-    140
-   ],
+   "avg": null,
    "dpa": "sale_none",
-   "trend": 14,
+   "trend": null,
    "pa": false,
-   "raw": "アナとエルサのフローズンジャーニー DPA 販売なし 運営中 9:00-21:00 分 14 % 165 210 140"
+   "raw": "アナとエルサのフローズンジャーニー DPA 販売なし 一時運営中止"
   },
   {
    "slug": "fs_lantern_festival",
@@ -29,12 +25,12 @@
    "avg": [
     80,
     120,
-    70
+    60
    ],
-   "dpa": "on_sale",
-   "trend": 29,
+   "dpa": "sale_none",
+   "trend": 40,
    "pa": false,
-   "raw": "ラプンツェルのランタンフェスティバル DPA 販売中 運営中 9:00-21:00 分 29 % 80 120 70"
+   "raw": "ラプンツェルのランタンフェスティバル DPA 販売なし 運営中 9:00-21:00 分 40 % 80 120 60"
   },
   {
    "slug": "fs_neverland_adventure",
@@ -45,12 +41,12 @@
    "avg": [
     70,
     120,
-    60
+    50
    ],
-   "dpa": "on_sale",
-   "trend": 33,
+   "dpa": "sale_none",
+   "trend": 0,
    "pa": false,
-   "raw": "ピーターパンのネバーランドアドベンチャー DPA 販売中 運営中 9:00-21:00 分 33 % 70 120 60"
+   "raw": "ピーターパンのネバーランドアドベンチャー DPA 販売なし 運営中 9:00-21:00 分 0 % 70 120 50"
   },
   {
    "slug": "fs_busy_buggy",
@@ -64,9 +60,9 @@
     40
    ],
    "dpa": null,
-   "trend": 25,
+   "trend": 0,
    "pa": false,
-   "raw": "ティンカーベルのビジーバギー 運営中 9:00-21:00 分 25 % 45 65 40"
+   "raw": "ティンカーベルのビジーバギー 運営中 9:00-21:00 分 0 % 45 65 40"
   },
   {
    "slug": "mh_soaring",
@@ -74,15 +70,11 @@
    "area": "mh",
    "status": "open",
    "wait": null,
-   "avg": [
-    155,
-    195,
-    140
-   ],
+   "avg": null,
    "dpa": "sale_none",
-   "trend": 14,
-   "pa": false,
-   "raw": "ソアリン DPA 販売なし 運営中 9:00-21:00 分 14 % 155 195 140"
+   "trend": null,
+   "pa": true,
+   "raw": "ソアリン DPA 販売なし プライオリティ・アクセス・エントランスをご利用の方のみ案内中"
   },
   {
    "slug": "aw_tot",
@@ -90,15 +82,11 @@
    "area": "aw",
    "status": "open",
    "wait": null,
-   "avg": [
-    120,
-    145,
-    140
-   ],
+   "avg": null,
    "dpa": "sale_none",
-   "trend": 14,
-   "pa": false,
-   "raw": "タワー オブ テラー DPA 販売なし 運営中 9:00-21:00 分 14 % 120 145 140"
+   "trend": null,
+   "pa": true,
+   "raw": "タワー オブ テラー DPA 販売なし プライオリティ・アクセス・エントランスをご利用の方のみ案内中"
   },
   {
    "slug": "aw_toy",
@@ -106,15 +94,11 @@
    "area": "aw",
    "status": "open",
    "wait": null,
-   "avg": [
-    140,
-    160,
-    100
-   ],
+   "avg": null,
    "dpa": "sale_none",
-   "trend": 0,
-   "pa": false,
-   "raw": "トイストーリーマニア DPA 販売なし 運営中 9:00-21:00 分 0 % 140 160 100"
+   "trend": null,
+   "pa": true,
+   "raw": "トイストーリーマニア DPA 販売なし プライオリティ・アクセス・エントランスをご利用の方のみ案内中"
   },
   {
    "slug": "ld_indiana",
@@ -137,12 +121,12 @@
    "avg": [
     60,
     120,
-    70
+    50
    ],
-   "dpa": "on_sale",
-   "trend": 43,
+   "dpa": "sale_none",
+   "trend": 67,
    "pa": false,
-   "raw": "レイジングスピリッツ DPA 販売中 運営中 9:00-21:00 分 43 % 60 120 70"
+   "raw": "レイジングスピリッツ DPA 販売なし 運営中 9:00-21:00 分 67 % 60 120 50"
   },
   {
    "slug": "mi_center",
@@ -150,15 +134,11 @@
    "area": "mi",
    "status": "open",
    "wait": null,
-   "avg": [
-    130,
-    160,
-    120
-   ],
+   "avg": null,
    "dpa": "sale_none",
-   "trend": 17,
-   "pa": false,
-   "raw": "センター オブ ジ アース DPA 販売なし 運営中 9:00-21:00 分 17 % 130 160 120"
+   "trend": null,
+   "pa": true,
+   "raw": "センター オブ ジ アース DPA 販売なし プライオリティ・アクセス・エントランスをご利用の方のみ案内中"
   },
   {
    "slug": "mh_transit",
@@ -213,16 +193,16 @@
    "name": "タートルトーク",
    "area": "aw",
    "status": "open",
-   "wait": 25,
+   "wait": 20,
    "avg": [
     25,
     40,
-    30
+    25
    ],
    "dpa": null,
-   "trend": 17,
+   "trend": 0,
    "pa": false,
-   "raw": "タートルトーク 運営中 9:00-21:00 25 分 17 % 25 40 30"
+   "raw": "タートルトーク 運営中 9:00-21:00 20 分 0 % 25 40 25"
   },
   {
    "slug": "aw_big",
@@ -253,16 +233,16 @@
    "name": "レールウェイ・アメフロ",
    "area": "aw",
    "status": "open",
-   "wait": 15,
+   "wait": 5,
    "avg": [
     10,
     25,
     10
    ],
    "dpa": null,
-   "trend": 50,
+   "trend": 0,
    "pa": false,
-   "raw": "レールウェイ・アメフロ 運営中 9:00-21:00 15 分 50 % 10 25 10"
+   "raw": "レールウェイ・アメフロ 運営中 9:00-21:00 5 分 0 % 10 25 10"
   },
   {
    "slug": "pd_searider",
@@ -289,12 +269,12 @@
    "avg": [
     5,
     25,
-    25
+    20
    ],
    "dpa": null,
-   "trend": 40,
+   "trend": 50,
    "pa": false,
-   "raw": "レールウェイ・ポートディスカバリー 運営中 9:00-21:00 15 分 40 % 5 25 25"
+   "raw": "レールウェイ・ポートディスカバリー 運営中 9:00-21:00 15 分 50 % 5 25 20"
   },
   {
    "slug": "ld_transit",
@@ -329,16 +309,16 @@
    "name": "ジャスミン フライングカーペット",
    "area": "ac",
    "status": "open",
-   "wait": 25,
+   "wait": 15,
    "avg": [
     20,
     40,
-    30
+    25
    ],
    "dpa": null,
-   "trend": 17,
+   "trend": 0,
    "pa": false,
-   "raw": "ジャスミン フライングカーペット 運営中 9:00-21:00 25 分 17 % 20 40 30"
+   "raw": "ジャスミン フライングカーペット 運営中 9:00-21:00 15 分 0 % 20 40 25"
   },
   {
    "slug": "ac_sindbad",
@@ -368,9 +348,9 @@
     10
    ],
    "dpa": null,
-   "trend": 50,
+   "trend": 0,
    "pa": false,
-   "raw": "キャラバンカルーセル 運営中 10:00-21:00 5 分 50 % 5 20 10"
+   "raw": "キャラバンカルーセル 運営中 10:00-21:00 5 分 0 % 5 20 10"
   },
   {
    "slug": "ml_theater",
@@ -401,7 +381,7 @@
    "name": "フライングフィッシュコースター",
    "area": "ml",
    "status": "open",
-   "wait": 25,
+   "wait": 20,
    "avg": [
     25,
     45,
@@ -410,55 +390,55 @@
    "dpa": null,
    "trend": 0,
    "pa": false,
-   "raw": "フライングフィッシュコースター 運営中 9:00-21:00 25 分 0 % 25 45 25"
+   "raw": "フライングフィッシュコースター 運営中 9:00-21:00 20 分 0 % 25 45 25"
   },
   {
    "slug": "ml_scuttle",
    "name": "スカットル スクーター",
    "area": "ml",
    "status": "open",
-   "wait": 15,
+   "wait": 10,
    "avg": [
     25,
     35,
     20
    ],
    "dpa": null,
-   "trend": 25,
+   "trend": 33,
    "pa": false,
-   "raw": "スカットル スクーター 運営中 9:00-21:00 15 分 25 % 25 35 20"
+   "raw": "スカットル スクーター 運営中 9:00-21:00 10 分 33 % 25 35 20"
   },
   {
    "slug": "ml_jelly",
    "name": "ジャンピン ジェリーフィッシュ",
    "area": "ml",
    "status": "open",
-   "wait": 10,
+   "wait": 5,
    "avg": [
     15,
     30,
     10
    ],
    "dpa": null,
-   "trend": 0,
+   "trend": 50,
    "pa": false,
-   "raw": "ジャンピン ジェリーフィッシュ 運営中 9:00-21:00 10 分 0 % 15 30 10"
+   "raw": "ジャンピン ジェリーフィッシュ 運営中 9:00-21:00 5 分 50 % 15 30 10"
   },
   {
    "slug": "ml_balloon",
    "name": "ブローフィッシュ バルーンレース",
    "area": "ml",
    "status": "open",
-   "wait": 20,
+   "wait": 15,
    "avg": [
     15,
     40,
-    15
+    20
    ],
    "dpa": null,
-   "trend": 33,
+   "trend": 25,
    "pa": false,
-   "raw": "ブローフィッシュ バルーンレース 運営中 9:00-21:00 20 分 33 % 15 40 15"
+   "raw": "ブローフィッシュ バルーンレース 運営中 9:00-21:00 15 分 25 % 15 40 20"
   },
   {
    "slug": "ml_pool",
@@ -469,12 +449,12 @@
    "avg": [
     15,
     30,
-    25
+    20
    ],
    "dpa": null,
-   "trend": 60,
+   "trend": 33,
    "pa": false,
-   "raw": "ワールプール 運営中 9:00-21:00 10 分 60 % 15 30 25"
+   "raw": "ワールプール 運営中 9:00-21:00 10 分 33 % 15 30 20"
   }
  ],
  "restaurants": []
